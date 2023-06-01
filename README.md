@@ -1213,6 +1213,10 @@ function makeActive() {
 This is an extremely common format for data to be sent from a server for use in a page.
 
 ```txt
+https://api.nasa.gov/
+
+https://docs.spacexdata.com/
+
 https://api.nytimes.com/svc/topstories/v2/travel.json?api-key=uQG4jhIEHKHKm0qMKGcTHqUgAolr1GM0
 
 https://pokeapi.co/api/v2/pokemon/
