@@ -1253,6 +1253,12 @@ const data = [
 
 An array is commonly used in conjunction with loops.
 
+Change the link in the HTML to reference `data-array.js`:
+
+```html
+<script src="js/data-array.js"></script>
+```
+
 We will loop through our data array using an if statement in order to find a match for our type variable.
 
 ```js
