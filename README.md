@@ -976,7 +976,7 @@ function makeActive(event) {
 }
 ```
 
-Note the use of `data[type]` instead of `data.type`.
+Note the use of `data[type]` instead of `data.type`. We use square brackets because `type` is a string. For example:
 
 ```js
 var funkyObject = {
@@ -989,20 +989,22 @@ console.log( funkyObject.not a variable  ) // can't do this, doesn't work
 console.log(funkyObject["not a variable"]);
 ```
 
-```js
+<!-- ```js
 var propertyToCheck = prompt("What do you want to get?");
 console.log(propertyToCheck);
 funkyObject.propertyToCheck; // doesn't work
 funkyObject[propertyToCheck];
+``` -->
+
+Note: you have to click on the tab twice to get the appropriate content although the active / inactive class switching works.
+
+Note that we can set the initial hash `window.location.hash`. For example:
+
+```js
+window.location.hash = "foobar";
 ```
 
-You have to click on the tab twice to get the right content although the active / inactive class switching works.
-
-We can set the initial hash with `window.location.hash = 'cuisines'`
-
-See [https://developer.mozilla.org/en-US/docs/Web/API/Window/hashchange_event](https://developer.mozilla.org/en-US/docs/Web/API/Window/hashchange_event)
-
-And then use another event listener `hashchange`:
+And then use another event listener `hashchange`. Here's the [documentation](https://developer.mozilla.org/en-US/docs/Web/API/Window/hashchange_event).
 
 ```js
 var tabs = document.querySelectorAll("nav a");
@@ -1011,12 +1013,13 @@ var contentPara = document.querySelector(".content");
 document.querySelector("nav a").classList.add("active");
 document.addEventListener("click", makeActive);
 
-window.addEventListener("hashchange", setContentAccordingToHash);
+window.addEventListener("hashchange", setContentAccordingToHash); // NEW
 
 function makeActive(event) {
   if (!event.target.matches("a")) return;
   makeInactive();
   event.target.classList.add("active");
+  // We are removing these two lines
   // var type = window.location.hash.substring(1)
   // contentPara.innerHTML = data[type]
 }
@@ -1025,13 +1028,14 @@ function makeInactive() {
   tabs.forEach((tab) => tab.classList.remove("active"));
 }
 
+// NEW
 function setContentAccordingToHash() {
   const type = window.location.hash.substring(1);
   contentPara.innerHTML = data[type];
 }
 ```
 
----
+I like to keep my event listeners at the bottom of the code block. We will also add a new function called `initializePage` to set the default view:
 
 ```js
 var tabs = document.querySelectorAll("nav a");
@@ -1070,10 +1074,12 @@ Now that we are using a hash we can look for it when the page loads and then der
 
 ```js
 function initializePage() {
+  // set some defaults if there is no hash
   if (!window.location.hash) {
     window.location.hash = "cuisines";
     document.querySelector('[href="#cuisines"]').classList.add("active");
   } else {
+    // if there is a hash set the active tab accordingly
     document
       .querySelector('[href="' + window.location.hash + '"] ')
       .classList.add("active");
@@ -1086,6 +1092,8 @@ Note the use of [attribute selectors](https://developer.mozilla.org/en-US/docs/W
 
 We'll replace our concatination with template strings (aka string literals).
 
+Here is a comparison of old school text concatination and template strings:
+
 ```js
 const name = "Yorik";
 const age = 2;
@@ -1096,6 +1104,8 @@ const newSchool = `My dog's name is ${name} and he is ${age * 7} years old.`;
 console.log("oldschool ", oldschool);
 console.log("newschool ", newschool);
 ```
+
+Here is another example showing how much cleaner using template strings can be when creating HTML:
 
 ```js
 var temp = {
@@ -1111,13 +1121,21 @@ var phraseTwo = `
 `;
 ```
 
-[Template Strings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) use back ticks instead of quotes and have access to JS expressions inside placeholders - ${ ... }.
+[Template Strings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) use back ticks instead of quote marks and have access to JS expressions inside placeholders - `${ ... }`
+
+We are currently using old school concatination in our CSS attribute selector:
+
+```js
+.querySelector('[href="' + window.location.hash + '"] ')
+```
+
+We will change it to:
 
 ```js
 .querySelector(`[href="${window.location.hash}"]`)
 ```
 
-If we want to use the hash change to determine both the active tab and the content being displayed we can dispense with the click event listener.
+We can use the hash change to determine both the active tab and the content being displayed. We can remove the click event listener.
 
 This also makes it easier to reset both the active state and content when the browser's forward and back arrows are used:
 
