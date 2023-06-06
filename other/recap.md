@@ -604,15 +604,18 @@ The first thing we want to do is detect clicks on our [data-password] button. Le
 
 ```js
 // Get the password toggle
-let toggle = document.querySelector('[data-password]');
+let toggle = document.querySelector("[data-password]");
+```
+
 Next, we’ll use the addEventListener() method to listen for click events on it, and do things when the button is clicked.
 
+```js
 // Get the password toggle
-let toggle = document.querySelector('[data-password]');
+let toggle = document.querySelector("[data-password]");
 
 // Listen for clicks on the toggle button
-toggle.addEventListener('click', function (event) {
-// Do stuff...
+toggle.addEventListener("click", function (event) {
+  // Do stuff...
 });
 ```
 
@@ -620,7 +623,7 @@ toggle.addEventListener('click', function (event) {
 
 When the button is clicked, we need to determine if we should show or hide passwords. One simple way to do that is to check if the button is currently selected or not.
 
-The [aria-pressed] attribute is used to tell screen readers (software that people with visual impairments use to interact with web pages) if a state-based button like this one is pressed or not. It’s exactly what we need!
+The [aria-pressed] attribute is used to tell screen readers (software that people with visual impairments use to interact with web pages) if a state-based button like this one is pressed or not. It’s exactly what we need.
 
 The [aria-pressed] attribute has a value of true when the button is selected, and false when it’s not. Let’s start by adding it to our button.
 
@@ -632,7 +635,7 @@ Inside our event listener’s callback function, we can check the value of the [
 
 We’ll use the event.target to get the button that triggered the click event. We could use our toggle variable, but I want to show the different options you have.
 
-We’ll use the getAttribute() method to get the value of [aria-pressed].
+We’ll use the `getAttribute()` method to get the value of [aria-pressed].
 
 ```js
 // Listen for clicks on the toggle button
