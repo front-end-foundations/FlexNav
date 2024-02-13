@@ -2,6 +2,7 @@
 
 - [FlexNav](#flexnav)
   - [Homework](#homework)
+    - [Part One](#part-one)
   - [Reading](#reading)
   - [The Terminal](#the-terminal)
     - [A Note For Windows Users](#a-note-for-windows-users)
@@ -58,7 +59,11 @@
 
 ## Homework
 
-Examine the files in the `other/homework` folder in your browser. `index.html` is your starting point and `index-done.html` your goal. Your assignment is to edit `index.html` so it matches the goal _without peeking at or inspecting the code in the done version_.
+### Part One
+
+Continue with the Front End Masters - the entire [CSS section](https://frontendmasters.com/courses/web-development-v3/css-overview-rules/).
+
+<!-- Examine the files in the `other/homework` folder in your browser. `index.html` is your starting point and `index-done.html` your goal. Your assignment is to edit `index.html` so it matches the goal _without peeking at or inspecting the code in the done version_.
 
 The designs need not match _exactly_, don't get too hung up on making the heights and widths of tabs etc. exactly the same.
 
@@ -70,7 +75,7 @@ That being said:
 - one tricky aspect of the responsive design is making the buttons drop below the logo and sign out link on small screens, research and use the `order` flex property to accomplish this
 - take some time to research Font Awesome, how it works and how it is being used
 - you shouldn't have to change the HTML but feel free to
-- brownie points for changing the visual design to make it your own
+- brownie points for changing the visual design to make it your own -->
 
 <!-- ## Midterm
 
@@ -98,7 +103,7 @@ Send me a link to the Github repo as well as the Netlify site -->
 
 - [What is Flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes)
 - See how far you can get on [Flexbox Froggy](http://flexboxfroggy.com/)
-- Review the MDN links to JavaScript documentation below
+- Review the JavaScript documentation on MDN
 
 ---
 
