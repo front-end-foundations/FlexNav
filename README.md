@@ -12,16 +12,15 @@
     - [NPM Demos](#npm-demos)
     - [NPM init](#npm-init)
   - [Flexbox](#flexbox)
-    - [Aside: Flex Order](#aside-flex-order)
-  - [JavaScript](#javascript)
+  - [JavaScript Navigation](#javascript-navigation)
     - [Preview \& Review - Boulevards de Paris](#preview--review---boulevards-de-paris)
       - [Arrays](#arrays)
-  - [JavaScript Navigation](#javascript-navigation)
     - [Aside: Prettier](#aside-prettier)
     - [Content](#content)
-    - [Aside - Design Patterns](#aside---design-patterns)
+    - [Aside - A Review of Design Patterns](#aside---a-review-of-design-patterns)
     - [Event Delegation](#event-delegation)
     - [Working with Objects](#working-with-objects)
+    - [Problems with the Current Approach](#problems-with-the-current-approach)
     - [An Array of Objects](#an-array-of-objects)
 - [Homework and Review](#homework-and-review)
   - [Selectors](#selectors)
@@ -194,17 +193,17 @@ You will be introduced to:
 - css attribute selectors
 - js template strings
 - js data structures: arrays and objects
-- js flow control: looping with forEach and for...of
+- js flow control: looping with `for...of` and `if` statements
 - js DOM manipulation: innerHTML and classList
-- new js event listeners
+- js event listeners
 - working with routing, urls and hashes
 - web site design patterns
 
 ---
 
-Examine the `static` website in `other/design-patterns`. This is a static website that uses multiple HTML files.
-
 Today we will be building a single page application - there is only one HTML page and JavaScript creates "the illusion" of multiple pages.
+
+This is a common pattern in modern web development. It is called a "single page application" or "SPA".
 
 Create an `index.html` page in the `app` folder and scaffold it with Emmet's `html:5` macro.
 
@@ -289,13 +288,7 @@ Note:
 - the new [package-lock.json](https://docs.npmjs.com/files/package-lock.json)
 - the `.gitignore` file (added by me) declares that the contents of the node_modules folder should not be tracked by git
 
-Examine the contents of `node_modules`.
-
-<!-- Browser Sync is an [NPM Package](https://www.npmjs.com/package/browser-sync) that is developed by a team using [Github](https://github.com/BrowserSync/browser-sync). -->
-
-<!-- ```sh
-$ npm install browser-sync
-``` -->
+Examine the contents of `node_modules`. Normally there is no need to touch this folder. Note that since it can be reinstalled at any time it is not tracked by git. 
 
 Add to the scripts section of package.json. This will allow us to start the server with `$ npm run start`.
 
@@ -330,69 +323,53 @@ Restart the server with `$ npm run start`.
 - Do not confuse it with _positioning_ which we have looked at for absolute, relative, static and fixed positioning
 - Get familiar with [Can I Use](https://caniuse.com/#feat=flexbox) and [feature detection](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Feature_detection)
 
+Add a link to the CSS in the head of the HTML:
+
+`<link >
+
 Add and review some basic formatting in `app/styles.css`:
 
 ```css
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-    "Oxygen", "Ubuntu", "Helvetica Neue", Arial, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: system-ui;
 }
-a {
-  text-decoration: none;
-  color: #333;
-}
+
 ul {
   margin: 0;
   padding: 0;
 }
+
 nav ul {
   list-style: none;
   background-color: #ffcb2d;
+  padding: 2rem;
 }
 ```
 
-Note the complex looking `font-family` value. It is quite common to use a _system font stack_ that allows each operating system to use its native font. [Google](https://bit.ly/2kYnnOV) it.
-
-You could try `font-family: system-ui;` but that only works in certain browsers. Consult [caniuse](https://caniuse.com/#feat=font-family-system-ui).
+We will use CSS Flexbox to style the navbar. We will use the `display: flex` property on the `nav ul` to make the list items flex items. We will use `justify-content` to space the items out and `gap` to add space between them.
 
 ```css
 nav ul {
   ...
-  padding-top: 1rem;
   display: flex;
   justify-content: space-around;
-  /* border on the bottom */
-  background-image: linear-gradient(
-    to bottom,
-    #ffcb2d 0%,
-    #ffcb2d 95%,
-    #9b8748 100%
-  );
-  /* background: url(../img/bg.png) repeat-x bottom; */
-  /* border-bottom: 1px solid #000; */
-}
-
-nav a {
-  padding: 4px 8px;
-  border: 1px solid #9b8748;
-  border-radius: 3px 3px 0 0;
-  background-color: #f9eaa9;
-  opacity: 0.8;
-
-  /* tab gradient */
-  background-image: linear-gradient(
-    to bottom,
-    rgba(255, 236, 165, 1) 0%,
-    rgba(232, 213, 149, 1) 6%,
-    rgba(253, 233, 162, 1) 94%,
-    rgba(253, 233, 162, 1) 100%
-  );
+  gap: 1rem;
 }
 ```
 
-Note: without `wrap` there is a horizontal scrollbar on very small screens: `flex-wrap: wrap;`
+We will style the anchor tags:
+
+```css
+nav a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+  padding: 6px 10px;
+}
+```
+
+Note the units for specifying font weight - a number between 100 and 900. This allows us to access the full range of weights available in a font.
 
 Add an `active` class to the first anchor tag in the navbar:
 
@@ -405,21 +382,9 @@ Format the active link and the hover state:
 ```css
 nav a:hover,
 nav .active {
-  background-image: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(224, 226, 240, 1) 6%,
-    rgba(254, 254, 254, 1) 53%
-  );
-  border-bottom: none;
-  opacity: 1;
-}
-```
-
-```css
-/* prevents collapsing */
-nav li {
-  display: flex;
+  color: #fff;
+  background: rgb(240, 31, 31);
+  border-radius: 4px;
 }
 ```
 
@@ -428,44 +393,143 @@ nav li {
 We have a meta tag:
 
 ```html
-<meta name="viewport" content="width=device-width" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 ```
+
+So we can use media queries to control the layout at different screen sizes. Here we will target the wide screen by using `min-width` instead of `max-width`:
 
 ```css
 @media (min-width: 460px) {
   nav ul {
     padding-left: 1rem;
     justify-content: flex-start;
-  }
-  nav li {
-    margin-right: 1rem;
+    gap: 2rem;
   }
 }
 ```
 
-See [this Pen](https://codepen.io/DannyBoyNYC/pen/dawPQz) for some basic info on how to control flexbox responsively.
+## JavaScript Navigation
 
-### Aside: Flex Order
+Add an active class to the tabs when they are clicked on.
 
-Flex order property (demo only):
+Add a script tag to `index.html` above the closing body tag.
 
-```css
-nav :nth-child(2) {
-  order: 1;
+`<script src="js/scripts.js"></script>`
+
+Add to scripts.js:
+
+```js
+var tabs = document.querySelector("nav a");
+console.log(tabs);
+```
+
+We need to use `querySelectorAll` because we are gathering more than one item:
+
+```js
+var tabs = document.querySelectorAll("nav a");
+console.log(tabs);
+```
+
+We need to attach an eventListener to each of the tabs. `addEventListener()` requires you to pass in a specific, individual element to listen to. You cannot pass in an array or node list of matching elements.
+
+We will use a `for` loop to loop through the tabs and attach an event listener to each one:
+
+```js
+var tabs = document.querySelectorAll("nav a");
+
+for (let i = 0; i < tabs.length; i++) {
+  tabs[i].addEventListener("click", makeActive);
+}
+
+function makeActive(event) {
+  event.preventDefault();
+  console.log(event.target);
 }
 ```
 
-## JavaScript
+<!-- Since NodeLists have a forEach method we can also do this:
+
+```js
+tabs.forEach(function (tab) {
+  tab.addEventListener("click", makeActive);
+}); 
+```
+
+
+Using an Arrow function shortcut (for anonymous functions):
+
+```js
+tabs.forEach((tab) => tab.addEventListener("click", makeActive));
+```
+
+-->
+
+Since `event.target` is read-only we cannot use it to add a class to the link we click on with `event.target.class = "active";`.
+
+Let's use `classList` again to add a class to the link we click on:
+
+```js
+var tabs = document.querySelectorAll("nav a");
+
+for (let i = 0; i < tabs.length; i++) {
+  tabs[i].addEventListener("click", makeActive);
+}
+
+function makeActive(event) {
+  event.preventDefault();
+  event.target.classList.add("active");
+}
+```
+
+Lets remove the active class from all tabs before we add it so that only one is active at a time:
+
+```js
+var tabs = document.querySelectorAll("nav a");
+
+for (let i = 0; i < tabs.length; i++) {
+  tabs[i].addEventListener("click", makeActive);
+}
+
+function makeActive(event) {
+  event.preventDefault();
+  for (let i = 0; i < tabs.length; i++) {
+    tabs[i].classList.remove("active");
+  }
+  event.target.classList.add("active");
+}
+```
+
+We will separate the classList removal out into its own `makeInactive` function and then call that function (`makeInactive();`):
+
+```js
+const tabs = document.querySelectorAll("nav a");
+
+for (let i = 0; i < tabs.length; i++) {
+  tabs[i].addEventListener("click", makeActive);
+}
+
+function makeActive(event) {
+  event.preventDefault();
+  makeInactive();
+  event.target.classList.add("active");
+}
+
+function makeInactive() {
+  for (let i = 0; i < tabs.length; i++) {
+    tabs[i].classList.remove("active");
+  }
+}
+```
 
 ### Preview & Review - Boulevards de Paris
 
 <!-- See `other/ARRAYS.js` (use Quokka extension for VS Code). -->
 
-Recall: `document.querySelector('<css selector>')` returns the first selected item.
+Recall: `document.querySelector('<css selector>')` selects the first item in the DOM that matches provided the CSS selector.
 
 Navigate to this [Wikipedia](https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris) article.
 
-Our goal is to capture all the boulevards in Paris the contain "de" and store them in an array. I will introduce you to some of the JavaScript we will be using later on our page.
+Our goal is to capture all the boulevards in Paris the contain "de" and store them in a JavaScript sturcture called an [array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array). This will introduce you to some of the JavaScript we will be using later on our FlexNav page.
 
 Paste the following in the browser's console and test:
 
@@ -583,112 +647,6 @@ Above we are using Array.filter. The filter method takes a function as an argume
 var de = linkText.filter((streetName) => streetName.includes("de"));
 ``` -->
 
-## JavaScript Navigation
-
-We will add an active class to the tabs when they are clicked on.
-
-Link the empty JavaScript file in `index.html` above the closing body tag.
-
-`<script src="js/scripts.js"></script>`
-
-Add to scripts.js:
-
-```js
-var tabs = document.querySelector("nav a");
-console.log(tabs);
-```
-
-We need to use `querySelectorAll` because we are gathering more than one item:
-
-```js
-var tabs = document.querySelectorAll("nav a");
-console.log(tabs);
-console.log(tabs.length);
-```
-
-Now we need to attach an eventListener to each of the tabs. `addEventListener()` requires you to pass in a specific, individual element to listen to. You cannot pass in an array or node list of matching elements.
-
-```js
-var tabs = document.querySelectorAll("nav a");
-
-for (let i = 0; i < tabs.length; i++) {
-  tabs[i].addEventListener("click", makeActive);
-}
-
-function makeActive(event) {
-  console.log(event.target);
-  event.preventDefault();
-}
-```
-
-Since NodeLists have a forEach method we can also do this:
-
-```js
-tabs.forEach(function (tab) {
-  tab.addEventListener("click", makeActive);
-});
-```
-
-Using an Arrow function shortcut (for anonymous functions):
-
-```js
-tabs.forEach((tab) => tab.addEventListener("click", makeActive));
-```
-
-Let's use `classList` again to add a class to the link we click on:
-
-```js
-var tabs = document.querySelectorAll("nav a");
-
-tabs.forEach((tab) => tab.addEventListener("click", makeActive));
-
-function makeActive(event) {
-  event.target.classList.add("active");
-  event.preventDefault();
-}
-```
-
-Lets remove the class from all tabs before we add it so that only one is active at a time:
-
-```js
-var tabs = document.querySelectorAll("nav a");
-
-tabs.forEach((tab) => tab.addEventListener("click", makeActive));
-
-function makeActive(event) {
-  tabs.forEach((tab) => tab.classList.remove("active"));
-  event.target.classList.add("active");
-  event.preventDefault();
-}
-```
-
-We can separate the classList removal out into its own function and then call that function (`makeInactive();`):
-
-```js
-var tabs = document.querySelectorAll("nav a");
-
-tabs.forEach((tab) => tab.addEventListener("click", makeActive));
-
-function makeActive(event) {
-  makeInactive();
-  event.target.classList.add("active");
-  event.preventDefault();
-}
-
-function makeInactive() {
-  tabs.forEach((tab) => tab.classList.remove("active"));
-}
-```
-
-<!--
-clone the branch into a new folder
-set up netlify:
-https://www.netlify.com/blog/2016/09/29/a-step-by-step-guide-deploying-on-netlify/
-view the main branch on Netlify
-merge the inclass branch into master
-commit and push
-view the main branch on Netlify
--->
 
 ### Aside: Prettier
 
@@ -732,32 +690,34 @@ And test.
 
 ### Content
 
-Add some variables to the bottom of `scripts.js` with content:
+Add some variables to the top of `scripts.js` by pasting in the following: 
 
 ```js
-var cuisines =
+const cuisines =
   "<h1>Cuisines</h1> <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio maiores adipisci quibusdam repudiandae dolor vero placeat esse sit! Quibusdam saepe aperiam explicabo placeat optio, consequuntur nihil voluptatibus expedita quia vero perferendis, deserunt et incidunt eveniet temporibus doloremque possimus facilis.</p>";
 
-var chefs =
+const chefs =
   "<h1>Chefs</h1> <p>Possimus labore, officia dolore! Eaque ratione saepe, alias harum laboriosam deserunt laudantium blanditiis eum explicabo placeat reiciendis labore iste sint. Consectetur expedita dignissimos, non quos distinctio, eos rerum facilis eligendi.<p>";
 
-var reviews =
+const reviews =
   "<h1>Reviews</h1> <p>Asperiores laudantium, rerum ratione consequatur, culpa consectetur possimus atque ab tempore illum non dolor nesciunt. Neque, rerum. A vel non incidunt, quod doloremque dignissimos necessitatibus aliquid laboriosam architecto at cupiditate commodi expedita in, quae blanditiis.</p>";
 
-var delivery =
+const delivery =
   "<h1>Delivery</h1> <p>Possimus labore, officia dolore! Eaque ratione saepe, alias harum laboriosam deserunt laudantium blanditiis eum explicabo placeat reiciendis labore iste sint. Consectetur expedita dignissimos, non quos distinctio, eos rerum facilis eligendi.</p>";
 ```
 
-Create an empty `div` with a class of `content` below the navbar in the html:
+Note the use of HTML in the strings. 
+
+Create an empty `main` tag with a class of `content` below the navbar in the html:
 
 ```html
 <div class="content"></div>
 ```
 
-Create a reference to it and initialize our page with some text using `innerHTML`:
+Create a variable that holds a reference to it and initialize our page with some text using `innerHTML`:
 
 ```js
-var contentPara = document.querySelector('.content');
+const contentPara = document.querySelector('.content');
 ...
 contentPara.innerHTML = cuisines;
 ```
@@ -785,6 +745,7 @@ So let's make the content of the `.content` div depend on the link's href. We wi
 
 ```js
 function makeActive(event) {
+  event.preventDefault();
   console.log(event.target.href);
   makeInactive();
   event.target.classList.add("active");
@@ -793,7 +754,7 @@ function makeActive(event) {
     contentPara.innerHTML = chefs;
   }
 
-  event.preventDefault();
+
 }
 ```
 
@@ -801,6 +762,7 @@ Expand the conditions:
 
 ```js
 function makeActive(event) {
+  event.preventDefault();
   makeInactive();
   event.target.classList.add("active");
 
@@ -813,8 +775,6 @@ function makeActive(event) {
   } else if (event.target.href.includes("delivery")) {
     contentPara.innerHTML = delivery;
   }
-
-  event.preventDefault();
 }
 ```
 
@@ -830,15 +790,16 @@ Demo: DOM manipulation: view source.
 
 In web development parlance this is akin to what is known as a Single Page Application or "SPA".
 
-### Aside - Design Patterns
+### Aside - A Review of Design Patterns
 
-Let's examine the samples in `other/design-patterns` (these are non-trivial examples, you do not need to understand everything, just the basic concepts - static, fragments and SPA - single page application):
+Let's review the samples in `other/design-patterns` (these are non-trivial examples, you do not need to understand everything, just the basic concepts - static, fragments and SPA - single page application):
 
-- `static/cuisines.html` - uses static HTML pages
-- `fragments/index-spa-fragments` - a single page application with scrolling
+- `static/cuisines.html` - uses separate HTML files
+- `fragments/index-spa-fragments` - a single page application (SPA) with scrolling
 - `spa/index-spa-js.html` - a single page application with JavaScript
 
 All three approaches are valid and common.
+
 For pedagogical purposes we have modeled our design after the last one - a single page application with JavaScript.
 
 Compare our current project with the static version above.
@@ -851,7 +812,7 @@ We cannot:
 - we have very limited search engine optimization
 - our site will not work without JavaScript
 
-The problem with what we've built might be termed _maintaining state_ and _routing_. If you refresh the browser while you are on the Reviews tab the page reinitializes to show the Cuisines tab and content.
+The problems with what we've built might be termed _maintaining state_ and _routing_. If you refresh the browser while you are on the Reviews tab the page reinitializes to show the Cuisines tab and content.
 
 ---
 
@@ -859,24 +820,51 @@ The problem with what we've built might be termed _maintaining state_ and _routi
 
 Instead of listening for clicks on each individual tab:
 
-`tabs.forEach(tab => tab.addEventListener('click', makeActive));`
+```js
+for (let i = 0; i < tabs.length; i++) {
+  tabs[i].addEventListener("click", makeActive);
+}
+```
 
-We are going to use "event delegation."
+We are going to use "event delegation." Event delegation is a technique for listening to events where you delegate a parent element as the listener for all of the events that happen inside it.
 
 Use:
 
 ```js
-// tabs.forEach((tab) => tab.addEventListener("click", makeActive));
+// for (let i = 0; i < tabs.length; i++) {
+//   tabs[i].addEventListener("click", makeActive);
+// }
 document.addEventListener("click", makeActive);
 ```
 
-Everything works but try clicking on the paragraph and the yellow background.
-
-We will use an if statement and the JavaScript "not" (`!`) operator to ensure that the user has clicked on a link in the navbar before running our code:
+Everything works as previously however clicking on any HTML element now runs our `makeActive` function. Try clicking on the paragraph and the yellow background. We will use an if statement to ensure that the user has clicked on a link in the navbar before running our code:
 
 ```js
 function makeActive(event) {
-  if (!event.target.matches("a")) return; // NEW
+  console.log(event.target);
+
+  if (event.target.matches("nav a")) { // NEW
+    event.preventDefault();
+    makeInactive();
+    event.target.classList.add("active");
+    if (event.target.href.includes("cuisines")) {
+      contentPara.innerHTML = cuisines;
+    } else if (event.target.href.includes("chefs")) {
+      contentPara.innerHTML = chefs;
+    } else if (event.target.href.includes("reviews")) {
+      contentPara.innerHTML = reviews;
+    } else if (event.target.href.includes("delivery")) {
+      contentPara.innerHTML = delivery;
+    }
+  } // NEW
+}
+```
+
+We can also use an if statement and the JavaScript "not" (`!`) operator to ensure that the user has clicked on a link in the navbar before running our code:
+
+```js
+function makeActive(event) {
+  if (!event.target.matches("nav a")) return; // NEW
   console.log(event.target);
   makeInactive();
   event.target.classList.add("active");
@@ -893,9 +881,15 @@ function makeActive(event) {
 }
 ```
 
+This has the advantage of being easier to read and understand.
+
 ### Working with Objects
 
 <!-- (See `other/OBJECTS.js` using Quokka in VS Code.) -->
+
+We have seen that a NodeList is a collection of HTML nodes and that an Array is a collection of items. We can also use objects to store data.
+
+We typically store objects in a variable. Objects can be identified by their use of curly brackets - "{ ... }" - as opposed to the square brackets - [ ... ] - used for Arrays.
 
 Use the browser's console to enter the following:
 
@@ -908,17 +902,48 @@ let obj = {
 obj.a;
 
 obj["a"];
+```
 
-obj.c = 3;
+An object is a collection of key-value pairs. The keys are strings and the values can be any data type.
+
+Note that there are two ways of accessing the value of a property in an object. The first is called "dot" notation and the second is called "bracket" notation.
+
+Bracket notation is useful when the property name is a string:
+
+```js
+let obj = {
+  a: 1,
+  b: 2,
+  'my variable': 3,
+};
+
+obj.my variable; // doesn't work
+
+obj["my variable"];
+```
+
+```js
+
+obj.d = 3;
 
 delete obj.a;
+
+obj
 ```
+
+The use of the term "object" is a bit problematic in JavaScript because, technically speaking, almost everything in JavaScript is an object. However, when we say "object" we are usually referring to an object that is a collection of key-value pairs.
 
 We will switch to using objects to store our data using the file `data-object.js` which is already in the `js` directory.
 
-Add `<script src="js/data-object.js"></script>` to `index.html`.
+And delete the old definitions and add `<script src="js/data-object.js"></script>` to `index.html` before the existing script tag:
 
-Here are the contents of that file:
+```html
+    <script src="js/data-object.js"></script>
+    <script src="js/scripts.js"></script>
+  </body>
+```
+
+Examine the contents of that file:
 
 ```js
 const data = {
@@ -936,6 +961,10 @@ const data = {
 };
 ```
 
+Note the error in the console: `Uncaught ReferenceError: cuisines is not defined`. Our existing code can no longer find the variable cuisines.
+
+`contentPara.innerHTML = cuisines;`
+
 Reinitialize using "dot" accessor method - e.g. `data.cuisines`:
 
 ```js
@@ -946,9 +975,12 @@ And use the accessor in the makeActive function:
 
 ```js
 function makeActive(event) {
-  if (!event.target.matches("nav ul a")) return;
+  if (!event.target.matches("nav a")) return;
+  event.preventDefault();
   makeInactive();
+
   event.target.classList.add("active");
+
   if (event.target.href.includes("cuisines")) {
     contentPara.innerHTML = data.cuisines; // NEW
   } else if (event.target.href.includes("chefs")) {
@@ -958,22 +990,12 @@ function makeActive(event) {
   } else if (event.target.href.includes("delivery")) {
     contentPara.innerHTML = data.delivery; // NEW
   }
-  event.preventDefault();
 }
-...
-contentPara.innerHTML = data.cuisines;
 ```
 
-Our page is still pretty fragile. Hitting refresh still displays the cuisines page and the back button doesn't work. Let's fix it by getting the page contents based on the address in the browser's address bar.
+Note: we did not use `event.target.href === "cuisines"` because the href is a full URL and not just the work chefs, cuisines etc. Try `console.log(event.target.href)` to see what I mean.
 
-Remove the hardcoded active class in the HTML and replace it with:
-
-```js
-var tabs = document.querySelectorAll("nav a");
-var contentPara = document.querySelector(".content");
-
-document.querySelector("nav a").classList.add("active"); // NEW
-```
+Our page is still pretty fragile. Hitting refresh still defaults to the cuisines page and the back button doesn't work. Let's fix it by getting the page contents based on the address in the browser's address bar.
 
 Change the href values to use hashes:
 
@@ -988,18 +1010,37 @@ Change the href values to use hashes:
 </nav>
 ```
 
-Remove `event.preventDefault()` from the script. We no longer need it.
+Remove `event.preventDefault()` from the script. We no longer need it since we are no loner using the href attribute to get the content.
 
-Now we'll get the string from the URL using [substring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substring):
+<!-- Remove the hardcoded active class - `<li><a href="cuisines" class="active">cuisines</a></li>` - in the HTML:
+
+`<li><a href="cuisines">cuisines</a></li>`
+
+ and set it using JavaScrpit in `scripts.js`:
+
+```js
+var tabs = document.querySelectorAll("nav a");
+var contentPara = document.querySelector(".content");
+
+document.querySelector("nav a").classList.add("active"); // NEW
+``` -->
+
+In the console try: `window.location`. This is a reference to the current URL. We can use it to get the hash.
+
+In the console try: `window.location.hash`. Note the it returns the hash with the `#` symbol followed by whatever follows, e.g. '#cuisines'.
+
+We can get the string without the hash from the URL using [substring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substring):
 
 ```js
 function makeActive(event) {
-  if (!event.target.matches("a")) return;
+  if (!event.target.matches("nav a")) return;
   makeInactive();
-  console.log(window.location);
-  var type = window.location.hash;
-  // var type = window.location.hash.substring(1);
-  console.log(type);
+  event.target.classList.add("active");
+  console.log("hash: ", window.location.hash);
+  console.log(
+    "hash minus first character: ",
+    window.location.hash.substring(1)
+  );
 }
 ```
 
@@ -1007,74 +1048,56 @@ Use the substring to set the HTML:
 
 ```js
 function makeActive(event) {
-  if (!event.target.matches("a")) return;
+  if (!event.target.matches("nav a")) return;
   makeInactive();
   event.target.classList.add("active");
-  var type = window.location.hash.substring(1);
-  contentPara.innerHTML = data[type];
+  var currentHash = window.location.hash.substring(1);
+  contentPara.innerHTML = data[currentHash];
 }
 ```
 
-Note the use of `data[type]` instead of `data.type`. We use square brackets because `type` is a string. For example:
+Note the use of `data[...]` instead of `data.type`. We use square brackets because `type` is a string. 
+
+For example:
 
 ```js
-var funkyObject = {
-  a: "testing",
-  "not a variable": "but you can use it in an object",
+var text = "cuisines";
+
+var myObject = {
+  cuisines: "testing",
 };
 
-console.log(funkyObject.a);
-console.log( funkyObject.not a variable  ) // can't do this, doesn't work
-console.log(funkyObject["not a variable"]);
+console.log("test one: ", myObject[text]);
+console.log("test two: ", myObject.text); // doesn't work
 ```
 
-<!-- ```js
-var propertyToCheck = prompt("What do you want to get?");
-console.log(propertyToCheck);
-funkyObject.propertyToCheck; // doesn't work
-funkyObject[propertyToCheck];
-``` -->
+### Problems with the Current Approach
 
-Note: you have to click on the tab twice to get the appropriate content although the active / inactive class switching works.
+1. we have to click on the tab twice to get the appropriate content 
+2. the active / inactive class switching works but not at first when we refresh the page
 
-Note that we can set the initial hash `window.location.hash`. For example:
+We can see the first issue by logging the variable currentHash to the console:
 
 ```js
-window.location.hash = "foobar";
-```
-
-And then use another event listener `hashchange`. Here's the [documentation](https://developer.mozilla.org/en-US/docs/Web/API/Window/hashchange_event).
-
-```js
-var tabs = document.querySelectorAll("nav a");
-var contentPara = document.querySelector(".content");
-
-document.querySelector("nav a").classList.add("active");
-document.addEventListener("click", makeActive);
-
-window.addEventListener("hashchange", setContentAccordingToHash); // NEW
-
 function makeActive(event) {
-  if (!event.target.matches("a")) return;
+  if (!event.target.matches("nav a")) return;
   makeInactive();
   event.target.classList.add("active");
-  // We are removing these two lines
-  // var type = window.location.hash.substring(1)
-  // contentPara.innerHTML = data[type]
-}
-
-function makeInactive() {
-  tabs.forEach((tab) => tab.classList.remove("active"));
-}
-
-// NEW
-function setContentAccordingToHash() {
-  const type = window.location.hash.substring(1);
-  contentPara.innerHTML = data[type];
+  var currentHash = window.location.hash.substring(1);
+  contentPara.innerHTML = data[currentHash];
+  console.log(currentHash); // NEW
 }
 ```
 
-I like to keep my event listeners at the bottom of the code block. We will also add a new function called `initializePage` to set the default view:
+This could be a tricky bug to resolve but note that we can set the hash to a default value when the page loads. 
+
+Try the following in the browser's location bar:
+
+```js
+window.location.hash = "foobar"
+```
+
+We can use the [hashchange](https://developer.mozilla.org/en-US/docs/Web/API/Window/hashchange_event) event to set the content according to the hash. This event fires when the hash changes.
 
 ```js
 var tabs = document.querySelectorAll("nav a");
@@ -1084,8 +1107,37 @@ function makeActive(event) {
   if (!event.target.matches("nav a")) return;
   makeInactive();
   event.target.classList.add("active");
-  // const type = window.location.hash.substring(1);
-  // contentPara.innerHTML = data[type];
+  // We are removing these two lines
+  // var type = window.location.hash.substring(1)
+  // contentPara.innerHTML = data[type]
+}
+
+function makeInactive() {
+    for (let i = 0; i < tabs.length; i++) {
+    tabs[i].classList.remove("active");
+  }
+}
+
+// NEW
+function setContentAccordingToHash() {
+  const currentHash = window.location.hash.substring(1);
+  contentPara.innerHTML = data[currentHash];
+}
+
+document.addEventListener("click", makeActive);
+window.addEventListener("hashchange", setContentAccordingToHash); // NEW
+```
+
+When we first arrive at the page it is blank and there is no highlighted tab. We will add a new function called `initializePage` to set the default view:
+
+```js
+var tabs = document.querySelectorAll("nav a");
+var contentPara = document.querySelector(".content");
+
+function makeActive(event) {
+  if (!event.target.matches("nav a")) return;
+  makeInactive();
+  event.target.classList.add("active");
 }
 
 function makeInactive() {
@@ -1093,8 +1145,8 @@ function makeInactive() {
 }
 
 function setContentAccordingToHash() {
-  const type = window.location.hash.substring(1);
-  contentPara.innerHTML = data[type];
+  const currentHash = window.location.hash.substring(1);
+  contentPara.innerHTML = data[currentHash];
 }
 
 function initializePage() {
@@ -1116,7 +1168,7 @@ function initializePage() {
   // set some defaults if there is no hash
   if (!window.location.hash) {
     window.location.hash = "cuisines";
-    document.querySelector('[href="#cuisines"]').classList.add("active");
+    document.querySelector('nav a').classList.add("active");
   } else {
     // if there is a hash set the active tab accordingly
     document
@@ -1127,7 +1179,11 @@ function initializePage() {
 }
 ```
 
-Note the use of [attribute selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors) and concatenation.
+Note the use of [attribute selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors) and concatenation. Using the attribute selector we can select the first anchor tag with the href cuisines:
+
+```js
+document.querySelector('[href="#cuisines"]').classList.add("active");
+```
 
 We'll replace our concatination with template strings (aka string literals).
 
@@ -1144,7 +1200,7 @@ console.log("oldschool ", oldschool);
 console.log("newschool ", newschool);
 ```
 
-Here is another example showing how much cleaner using template strings can be when creating HTML:
+Here is another example showing how we often create HTML using template strings:
 
 ```js
 var temp = {
@@ -1176,28 +1232,56 @@ We will change it to:
 
 We can use the hash change to determine both the active tab and the content being displayed. We can remove the click event listener.
 
-This also makes it easier to reset both the active state and content when the browser's forward and back arrows are used:
+This also makes it easier to reset both the active state and content when the browser's forward and back arrows are used.
+
+Since we can change the active tab and the content based on the hash we can remove the click event listener:
 
 ```js
+document.addEventListener("click", makeActive);
+```
+
+And add a call to makeActive in the setContentAccordingToHash function which passes the hash to makeActive:
+
+```js
+makeActive(currentHash);
+```
+
+And in makeActive we receive the hash and use it to set the active tab:
+
+```js
+function makeActive(currentHash) {
+  makeAllTabsInactive();
+  var tabToActivate = document.querySelector(`a[href="#${currentHash}"]`);
+  tabToActivate.classList.add("active");
+}
+```
+
+Here is the final result:
+
+```js
+// declare variables
 var tabs = document.querySelectorAll("nav a");
 var contentPara = document.querySelector(".content");
 
-// when the hash changes
-function setActiveTabAccordingToHash(type) {
-  makeAllTabsInactive();
-  var tabToActivate = document.querySelector(`a[href="#${type}"]`);
+// add the class active to one tab
+function makeActive(currentHash) {
+  makeInactive();
+  var tabToActivate = document.querySelector(`a[href="#${currentHash}"]`);
   tabToActivate.classList.add("active");
 }
 
-function makeAllTabsInactive() {
-  tabs.forEach((tab) => tab.classList.remove("active"));
+// remove the class active from all tabs
+function makeInactive() {
+    for (let i = 0; i < tabs.length; i++) {
+    tabs[i].classList.remove("active");
+  }
 }
 
 // runs on page load and whenever the hash changes
 function setContentAccordingToHash() {
-  var type = window.location.hash.substring(1);
-  contentPara.innerHTML = data[type];
-  setActiveTabAccordingToHash(type);
+  var currentHash = window.location.hash.substring(1);
+  contentPara.innerHTML = data[currentHash];
+  makeActive(currentHash);
 }
 
 // only runs once on page load
@@ -1213,6 +1297,8 @@ window.addEventListener("hashchange", setContentAccordingToHash);
 
 initializePage();
 ```
+
+Initialize git and Add and Commit all changes. Create a new branch called `data-array` and check it out before continuing.
 
 <!-- ## Aside - Data Attributes
 
@@ -1263,7 +1349,7 @@ https://pokeapi.co/api/v2/pokemon/
 https://www.reddit.com/r/BudgetAudiophile.json
 ```
 
-Examine `data-array.js`:
+Examine `js/data-array.js`:
 
 ```js
 const data = [
@@ -1298,15 +1384,18 @@ Change the link in the HTML to reference `data-array.js`:
 <script src="js/data-array.js"></script>
 ```
 
-We will loop through our data array using an if statement in order to find a match for our type variable.
+The page will not work because we are using the wrong data structure. We will need to change the way we access the data in the `setContentAccordingToHash` function.
+
+We will loop through our new data array using an if statement in order to find a match for our currentHash variable.
 
 ```js
+// runs on page load and whenever the hash changes
 function setContentAccordingToHash() {
-  const type = window.location.hash.substring(1);
+  const currentHash = window.location.hash.substring(1);
   for (var i = 0; i < data.length; i++) {
-    if (data[i].section === type) {
+    if (data[i].section === currentHash) {
       contentPara.innerHTML = data[i].story;
-      setActiveTabAccordingToHash(type);
+      makeActive(currentHash);
     }
   }
 }
@@ -1316,25 +1405,25 @@ We could also use the array's `forEach` method instead of a for loop:
 
 ```js
 function setContentAccordingToHash() {
-  const type = window.location.hash.substring(1);
+  const currentHash = window.location.hash.substring(1);
   data.forEach(function (item) {
-    if (item.section === type) {
+    if (item.section === currentHash) {
       contentPara.innerHTML = item.story;
-      setActiveTabAccordingToHash(type);
+      makeActive(currentHash);
     }
   });
 }
 ```
 
-I prefer a `for ... of` loop ([documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of)):
+I prefer a `for ... of` loop ([documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of)) because I find the syntax easier to read:
 
 ```js
 function setContentAccordingToHash() {
-  const type = window.location.hash.substring(1);
+  const currentHash = window.location.hash.substring(1);
   for (var item of data) {
-    if (item.section === type) {
+    if (item.section === currentHash) {
       contentPara.innerHTML = item.story;
-      setActiveTabAccordingToHash(type);
+      makeActive(currentHash);
     }
   }
 }
@@ -1343,10 +1432,10 @@ function setContentAccordingToHash() {
 We can use a template string (string literal) to create HTML that uses both the section and story elements:
 
 ```js
-if (item.section === type) {
+if (item.section === currentHash) {
   // contentPara.innerHTML = item.story
   contentPara.innerHTML = `<h2>${item.section}</h2> <p>${item.story}</p>`;
-  setActiveTabAccordingToHash(type);
+  makeActive(currentHash);
 }
 ```
 
@@ -1355,12 +1444,12 @@ e.g.:
 ```js
 // runs on page load and whenever the hash changes
 function setContentAccordingToHash() {
-  const type = window.location.hash.substring(1);
+  const currentHash = window.location.hash.substring(1);
   for (var item of data) {
-    if (item.section === type) {
+    if (item.section === currentHash) {
       // contentPara.innerHTML = item.story
       contentPara.innerHTML = `<h2>${item.section}</h2> <p>${item.story}</p>`;
-      setActiveTabAccordingToHash(type);
+      setActiveTabAccordingToHash(currentHash);
     }
   }
 }
@@ -1370,6 +1459,51 @@ And finally, use an [event](https://developer.mozilla.org/en-US/docs/Web/API/Doc
 
 ```js
 // initializePage()
+document.addEventListener("DOMContentLoaded", initializePage);
+```
+
+Here is the final result:
+
+```js 
+// declare variables
+var tabs = document.querySelectorAll("nav a");
+var contentPara = document.querySelector(".content");
+
+// add the class active to one tab
+function makeActive(currentHash) {
+  makeInactive();
+  var tabToActivate = document.querySelector(`a[href="#${currentHash}"]`);
+  tabToActivate.classList.add("active");
+}
+
+// remove the class active from all tabs
+function makeInactive() {
+  for (let i = 0; i < tabs.length; i++) {
+    tabs[i].classList.remove("active");
+  }
+}
+
+// runs on page load and whenever the hash changes
+function setContentAccordingToHash() {
+  const currentHash = window.location.hash.substring(1);
+  for (var item of data) {
+    if (item.section === currentHash) {
+      contentPara.innerHTML = `<h2>${item.section}</h2> <p>${item.story}</p>`;
+      makeActive(currentHash);
+    }
+  }
+}
+
+// only runs once on page load
+function initializePage() {
+  if (!window.location.hash) {
+    window.location.hash = "cuisines";
+    document.querySelector('[href="#cuisines"]').classList.add("active");
+  }
+  setContentAccordingToHash();
+}
+
+window.addEventListener("hashchange", setContentAccordingToHash);
 document.addEventListener("DOMContentLoaded", initializePage);
 ```
 
