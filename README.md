@@ -3,7 +3,7 @@
 - [FlexNav](#flexnav)
   - [Homework](#homework)
     - [Part One](#part-one)
-  - [Reading](#reading)
+    - [Part Two](#part-two)
   - [The Terminal](#the-terminal)
     - [A Note For Windows Users](#a-note-for-windows-users)
   - [Initialize GIT and Create a Branch](#initialize-git-and-create-a-branch)
@@ -11,50 +11,15 @@
   - [Node Package Manager (NPM)](#node-package-manager-npm)
     - [NPM Demos](#npm-demos)
     - [NPM init](#npm-init)
-  - [Flexbox](#flexbox)
+  - [A Review of Design Patterns](#a-review-of-design-patterns)
+  - [Flexbox Navigation](#flexbox-navigation)
   - [JavaScript Navigation](#javascript-navigation)
-    - [Preview \& Review - Boulevards de Paris](#preview--review---boulevards-de-paris)
-      - [Arrays](#arrays)
-    - [Aside: Prettier](#aside-prettier)
     - [Content](#content)
-    - [Aside - A Review of Design Patterns](#aside---a-review-of-design-patterns)
+  - [SPA Design Issues](#spa-design-issues)
     - [Event Delegation](#event-delegation)
     - [Working with Objects](#working-with-objects)
     - [Problems with the Current Approach](#problems-with-the-current-approach)
     - [An Array of Objects](#an-array-of-objects)
-- [Homework and Review](#homework-and-review)
-  - [Selectors](#selectors)
-    - [document.querySelectorAll();](#documentqueryselectorall)
-    - [document.querySelector();](#documentqueryselector)
-  - [Element.matches()](#elementmatches)
-  - [Type-specific selector methods](#type-specific-selector-methods)
-  - [Loops](#loops)
-    - [for](#for)
-    - [for…of](#forof)
-    - [for…in](#forin)
-  - [Loop over plain objects ({}).](#loop-over-plain-objects-)
-    - [Skipping and ending loops](#skipping-and-ending-loops)
-  - [Array.forEach() and NodeList.forEach()](#arrayforeach-and-nodelistforeach)
-  - [Classes](#classes)
-    - [Element.classList](#elementclasslist)
-    - [Element.className](#elementclassname)
-  - [Styles](#styles)
-    - [Inline Styles](#inline-styles)
-    - [Computed Styles](#computed-styles)
-  - [Attributes \& Properties](#attributes--properties)
-  - [Properties](#properties)
-  - [Attributes vs. Properties](#attributes-vs-properties)
-  - [Event Listeners](#event-listeners)
-    - [EventTarget.addEventListener()](#eventtargetaddeventlistener)
-    - [Multiple Targets](#multiple-targets)
-    - [Capturing events that don’t bubble](#capturing-events-that-dont-bubble)
-    - [Multiple Events](#multiple-events)
-  - [Assignment](#assignment)
-    - [Getting Setup](#getting-setup)
-    - [Listening for clicks](#listening-for-clicks)
-    - [Determining whether to show or hide passwords](#determining-whether-to-show-or-hide-passwords)
-    - [Showing and hiding passwords](#showing-and-hiding-passwords)
-    - [Styling the button](#styling-the-button)
 
 ## Homework
 
@@ -62,55 +27,15 @@
 
 Continue with the Front End Masters - the entire [CSS section](https://frontendmasters.com/courses/web-development-v3/css-overview-rules/).
 
-<!-- Examine the files in the `other/homework` folder in your browser. `index.html` is your starting point and `index-done.html` your goal. Your assignment is to edit `index.html` so it matches the goal _without peeking at or inspecting the code in the done version_.
+### Part Two
 
-The designs need not match _exactly_, don't get too hung up on making the heights and widths of tabs etc. exactly the same.
-
-That being said:
-
-- the buttons / tabs should have a active state that shows after being clicked on
-- use css flexbox and [this documentation]([start here](https://css-tricks.com/snippets/css/a-guide-to-flexbox/))
-- responsive design is a must
-- one tricky aspect of the responsive design is making the buttons drop below the logo and sign out link on small screens, research and use the `order` flex property to accomplish this
-- take some time to research Font Awesome, how it works and how it is being used
-- you shouldn't have to change the HTML but feel free to
-- brownie points for changing the visual design to make it your own -->
-
-<!-- ## Midterm
-
-Copy the `other/homework` folder from the previous section (Flexnav) into a stand alone project.
-
-- `index.html` is your starting point
-- `index-done.html` the goal
-- edit `index.html` so it matches the goal
-- try not to copy directly, use `index-done.html` only when you get stuck
-
-One task you will have to perform is not in the `index-done.html` file.
-
-Using the notes in Basilica:
-
-- add an empty div to the page
-- use JavaScript to change the content of the div when the user clicks on the tabs
-
-Make sure to create a local Git repo.
-
-When you are done push your local repo to Github and use Netlify to deploy your assignment.
-
-Send me a link to the Github repo as well as the Netlify site -->
-
-## Reading
-
-- [What is Flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes)
-- See how far you can get on [Flexbox Froggy](http://flexboxfroggy.com/)
-- Review the JavaScript documentation on MDN
-
----
+Begin with the [JavaScript section](https://frontendmasters.com/courses/web-development-v3/javascript-overview/).
 
 ## The Terminal
 
 There are many good reasons to acquire a basic understanding of the command line terminal. In this class we will use the [Terminal](https://support.apple.com/guide/terminal/welcome/mac) app for GIT and GITHUB as well as for Node Package Manager (NPM).
 
-<hr />
+---
 
 ### A Note For Windows Users
 
@@ -191,19 +116,21 @@ You will be introduced to:
 - node package manager
 - css flexbox
 - css attribute selectors
-- js template strings
 - js data structures: arrays and objects
 - js flow control: looping with `for...of` and `if` statements
-- js DOM manipulation: innerHTML and classList
-- js event listeners
+- js DOM manipulation: `innerHTML` and `classList`
+- js string manupulation: `includes`, `substring` and template strings
+- js event listeners: `click` and `hashchange`
 - working with routing, urls and hashes
 - web site design patterns
 
 ---
 
-Today we will be building a single page application - there is only one HTML page and JavaScript creates "the illusion" of multiple pages.
+Today we will be building a single page application - there is only one HTML page and JavaScript creates "the illusion" of multiple pages using what are frequently referred to as "views."
 
-This is a common pattern in modern web development. It is called a "single page application" or "SPA".
+This is a common pattern in modern web development. A "single page application" is often refered to as a "SPA". These pages are often built using frontend libraries such as React, Angular or Vue. We will be using vanilla JavaScript which should give you a better understanding of how browsers function and introduce you to concepts such as routing - managing the state of the page based on the browser's location.
+
+We will examine various design patterns shortly.
 
 Create an `index.html` page in the `app` folder and scaffold it with Emmet's `html:5` macro.
 
@@ -218,15 +145,15 @@ Add the following to index.html:
 ```html
 <nav>
   <ul>
-    <li><a href="index.html">cuisines</a></li>
-    <li><a href="chefs.html">chefs</a></li>
-    <li><a href="reviews.html">reviews</a></li>
-    <li><a href="delivery.html">delivery</a></li>
+    <li><a href="index.html" class="active">Cuisines</a></li>
+    <li><a href="chefs.html">Chefs</a></li>
+    <li><a href="reviews.html">Reviews</a></li>
+    <li><a href="delivery.html">Delivery</a></li>
   </ul>
 </nav>
 ```
 
-We will open the file in a brower using the HTTP (as opposed to File://) protocol.
+We will open the file in a browser using the HTTP (as opposed to File://) protocol using an NPM module.
 
 ## Node Package Manager (NPM)
 
@@ -314,20 +241,37 @@ Try editing the start script to specify the port number:
 
 Restart the server with `$ npm run start`.
 
-## Flexbox
+## A Review of Design Patterns
 
-[What is Flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes)?
+Let's review the samples in `other/design-patterns`:
 
-- A good [reference](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) cheat sheet
-- `flex` is a _display_ attribute like `block, none, inline`
-- Do not confuse it with _positioning_ which we have looked at for absolute, relative, static and fixed positioning
-- Get familiar with [Can I Use](https://caniuse.com/#feat=flexbox) and [feature detection](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Feature_detection)
+- `Static` - uses separate HTML files to create a functioning web site
+- `Fragments` - a single page application (SPA) that uses link fragments to navigate
+- `SPA` - a single page application with JavaScript
+
+Compare the location bar in the browser in the three samples. The SPA and fragments samples have an index.html and hash in the URL. The static sample does not. The SPA version changes content not by scrolling to a new location but by changing the content of the page with JavaScript.
+
+All three approaches are valid and common and each has advantages and disadvantages. 
+
+The difference between the static and SPA approach is often subsumed until the rubriks "web site" vs "web app."
+
+The primary disadvantage of the multi-page static version is that any JavaScript and CSS running on the page is reinitialized and/or reloaded when a new page is loaded. This inability to maintain the state of data across views makes it unsuitable for web applications. The advantages include better search engine optimization (SEO), the ability to share links with others and to easily a back button among others. 
+
+The primary advantage of the SPA is that it does not reinitialize JavaScript (or CSS for that matter) because there is only one HTML page - just with different views. It can work more like a web application (think Gmail or Google Docs for example).
+
+The fragments page is a compromise between the two. It maintains state across views and does not require JavaScript to be reinitialized. It is a good choice for a web site that needs to maintain state across views but does not need to be a full web application.
+
+For pedagogical purposes I have modeled our design after the SPA.
+
+---
+
+## Flexbox Navigation
 
 Add a link to the CSS in the head of the HTML:
 
-`<link >
+` <link rel="stylesheet" href="css/styles.css" />`
 
-Add and review some basic formatting in `app/styles.css`:
+Add some basic formatting in `app/styles.css`:
 
 ```css
 body {
@@ -358,7 +302,7 @@ nav ul {
 }
 ```
 
-We will style the anchor tags:
+Style the anchor tags:
 
 ```css
 nav a {
@@ -369,7 +313,7 @@ nav a {
 }
 ```
 
-Note the units for specifying font weight - a number between 100 and 900. This allows us to access the full range of weights available in a font.
+Note the units for specifying font weight - a number between 100 and 900. This allows us to access the full range of weights available in a font instead of the single weight we get with `font-weight: bold`.
 
 Add an `active` class to the first anchor tag in the navbar:
 
@@ -427,23 +371,66 @@ We need to use `querySelectorAll` because we are gathering more than one item:
 
 ```js
 var tabs = document.querySelectorAll("nav a");
-console.log(tabs);
+console.log(tabs[0]); // access the first item in the tabs NodeList
 ```
 
-We need to attach an eventListener to each of the tabs. `addEventListener()` requires you to pass in a specific, individual element to listen to. You cannot pass in an array or node list of matching elements.
+Note that we use brackets to access the first item in the NodeList. We can also use the `length` property to see how many items are in the NodeList:
 
-We will use a `for` loop to loop through the tabs and attach an event listener to each one:
+```js
+var tabs = document.querySelectorAll("nav a");
+console.log(tabs[0]); 
+console.log(tabs.length);
+```
+
+We need to attach an eventListener to each of the tabs. `addEventListener()` requires you to pass in a specific, individual element to listen to. You cannot simply specify a list of elements: `tabs.addEventListener()`.
+
+We will use a `for` loop to loop through the tabs.
+
+A for loop is a control flow statement for specifying iteration, which allows code to be executed repeatedly. The syntax is:
+
+```js
+for (expression 1; expression 2; expression 3) {
+  // code block to be executed
+}
+```
+
+Expression 1; is executed (one time only) before the execution of the code block
+
+Expression 2; defines the condition for executing the code block
+
+Expression 3; is executed (every time) after the code block has been executed.
+
+Use case examples:
+
+```js
+for (let i = 0; i < 5; i++) {
+  console.log(i)
+}
+```
+
+Use `tabs.length` (4) in the condition and use `tabs[i]` to access each tab:
+
+```js
+for (let i = 0; i < tabs.length; i++) {
+  console.log(i);
+  console.log(tabs[i]);
+  console.log(tabs[i].href);
+}
+```
+
+
+Attach an event listener to each tab:
 
 ```js
 var tabs = document.querySelectorAll("nav a");
 
-for (let i = 0; i < tabs.length; i++) {
-  tabs[i].addEventListener("click", makeActive);
-}
-
 function makeActive(event) {
   event.preventDefault();
   console.log(event.target);
+}
+
+for (let i = 0; i < tabs.length; i++) {
+  tabs[i].addEventListener("click", makeActive);
 }
 ```
 
@@ -471,13 +458,13 @@ Let's use `classList` again to add a class to the link we click on:
 ```js
 var tabs = document.querySelectorAll("nav a");
 
-for (let i = 0; i < tabs.length; i++) {
-  tabs[i].addEventListener("click", makeActive);
-}
-
 function makeActive(event) {
   event.preventDefault();
-  event.target.classList.add("active");
+  event.target.classList.add("active"); // NEW
+}
+
+for (let i = 0; i < tabs.length; i++) {
+  tabs[i].addEventListener("click", makeActive);
 }
 ```
 
@@ -486,10 +473,6 @@ Lets remove the active class from all tabs before we add it so that only one is 
 ```js
 var tabs = document.querySelectorAll("nav a");
 
-for (let i = 0; i < tabs.length; i++) {
-  tabs[i].addEventListener("click", makeActive);
-}
-
 function makeActive(event) {
   event.preventDefault();
   for (let i = 0; i < tabs.length; i++) {
@@ -497,16 +480,16 @@ function makeActive(event) {
   }
   event.target.classList.add("active");
 }
-```
-
-We will separate the classList removal out into its own `makeInactive` function and then call that function (`makeInactive();`):
-
-```js
-const tabs = document.querySelectorAll("nav a");
 
 for (let i = 0; i < tabs.length; i++) {
   tabs[i].addEventListener("click", makeActive);
 }
+```
+
+To make things easier to reason about we will separate the classList removal out into its own `makeInactive` function and then call that function (`makeInactive();`):
+
+```js
+const tabs = document.querySelectorAll("nav a");
 
 function makeActive(event) {
   event.preventDefault();
@@ -519,178 +502,22 @@ function makeInactive() {
     tabs[i].classList.remove("active");
   }
 }
-```
 
-### Preview & Review - Boulevards de Paris
-
-<!-- See `other/ARRAYS.js` (use Quokka extension for VS Code). -->
-
-Recall: `document.querySelector('<css selector>')` selects the first item in the DOM that matches provided the CSS selector.
-
-Navigate to this [Wikipedia](https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris) article.
-
-Our goal is to capture all the boulevards in Paris the contain "de" and store them in a JavaScript sturcture called an [array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array). This will introduce you to some of the JavaScript we will be using later on our FlexNav page.
-
-Paste the following in the browser's console and test:
-
-```js
-var first = document.querySelector("a");
-```
-
-`document.querySelectorAll()` returns a collection (`nodeList`) of the items on the page:
-
-```js
-var all = document.querySelectorAll("a");
-```
-
-Demo: console history.
-
-Right click to inspect the first listed boulevard (Boulevard Auguste-Blanqui) and find `<div class="mw-category">` in the DOM. (Note: You can reference the currently selected element using `$0` in the console.)
-
-```js
-var category = document.querySelector(".mw-category");
-```
-
-We can use our `category` variable as the basis for a subsequent, more targeted query:
-
-```js
-var links = category.querySelectorAll("a");
-```
-
-Examine the methods on the resulting nodeList. Try `links.length` in the console.
-
-Our nodeList looks like an array but isn't. Let's convert the nodeList into an Array:
-
-```js
-var linksArray = Array.from(links);
-```
-
-- Examine the methods on the resulting Array and compare them to the methods on a nodeList
-- Examine one of the anchor tags from the resulting array in the console:
-
-```js
-linksArray[0];
-linksArray[0].text;
-```
-
-#### Arrays
-
-We commonly use loops to iterate through an array and perform some action.
-
-Below we initialize an empty array `linkText` and then loop through the linksArray using its length property. For every item in linksArray we use Array.push() to add it to linkText:
-
-```js
-var linkText = [];
-
-for (let i = 0; i < linksArray.length; i++) {
-  linkText.push(linksArray[i].textContent);
+for (let i = 0; i < tabs.length; i++) {
+  tabs[i].addEventListener("click", makeActive);
 }
 ```
-
-See [for](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) on MDN.
-
-Note: another way to create our array of text items is:
-
-```js
-var linkText = [];
-
-for (let link of linksArray) {
-  linkText.push(link.text);
-}
-```
-
-See [for...of](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of) on MDN.
-
-Let's look at a couple of important [array methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array): [`array.map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) and [`array.filter()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
-
-Here's an example that uses the array's [`map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) method to isolate the text content from our linksArray:
-
-```js
-var linkTextTwo = linksArray.map(function (link) {
-  return link.textContent;
-});
-```
-
-```js
-var linkTextTwo = linksArray
-  .map(function (link) {
-    return `${link.textContent} is in paree`;
-  })
-  .join(" AND ");
-```
-
-<!-- Here's an alternative form of the same thing using an arrow function:
-
-```js
-var linkText = linksArray.map((link) => link.textContent);
-```
-
-Note that we use `=>` instead of the word `function`. Since we only have one variable, we could also remove the round braces:
-
-```js
-var linkText = linksArray.map((link) => link.textContent);
-``` -->
-
-Let's use another Array method, `filter`, to isolate only those boulevards that contain a specific string:
-
-```js
-var de = linkText.filter(function (streetName) {
-  return streetName.includes("de");
-});
-```
-
-Above we are using Array.filter. The filter method takes a function as an argument. The function is called for each item in the array. If the function returns true, the item is added to the new array. If the function returns false, the item is not added to the new array.
-
-<!-- Here's the same function as an arrow function:
-
-```js
-var de = linkText.filter((streetName) => streetName.includes("de"));
-``` -->
-
-
-### Aside: Prettier
-
-[Prettier](https://prettier.io/docs/en/index.html) is a code formatter.
-
-Install and configure the Prettier extension in VSCode using NPM:
-
-`npm install -D prettier`
-
-Create `.prettierrc` in the app folder.
-
-```js
-{
-  "singleQuote": true,
-  "trailingComma": "none",
-  "semi": false
-}
-```
-
-Set [prettier preferences](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) in VS Code:
-
-```js
-"editor.formatOnSave": true,
-"editor.defaultFormatter": "esbenp.prettier-vscode",
-"[javascript]": {
-  "editor.formatOnSave": true
-},
-"[html]": {
-  "editor.formatOnSave": true
-},
-"[css]": {
-  "editor.formatOnSave": true
-},
-"prettier.singleQuote": true,
-"prettier.trailingComma": "all",
-```
-
-And test.
-
----
 
 ### Content
 
-Add some variables to the top of `scripts.js` by pasting in the following: 
+Create a new script tag above the existing one in `index.html`:
+
+```html
+<script src="js/data-variables.js"></script>
+<script src="js/scripts.js"></script> 
+```
+
+Examine the `data-variables.js` file:
 
 ```js
 const cuisines =
@@ -706,7 +533,7 @@ const delivery =
   "<h1>Delivery</h1> <p>Possimus labore, officia dolore! Eaque ratione saepe, alias harum laboriosam deserunt laudantium blanditiis eum explicabo placeat reiciendis labore iste sint. Consectetur expedita dignissimos, non quos distinctio, eos rerum facilis eligendi.</p>";
 ```
 
-Note the use of HTML in the strings. 
+Note the use of HTML tags in the strings. 
 
 Create an empty `main` tag with a class of `content` below the navbar in the html:
 
@@ -714,17 +541,14 @@ Create an empty `main` tag with a class of `content` below the navbar in the htm
 <div class="content"></div>
 ```
 
-Create a variable that holds a reference to it and initialize our page with some text using `innerHTML`:
+and a variable that holds a reference to it and initialize our page with some text using `innerHTML`:
 
 ```js
 const contentPara = document.querySelector('.content');
-...
 contentPara.innerHTML = cuisines;
 ```
 
-<!-- textContent -->
-
-Style it using CSS:
+Add some minimal styling to the content:
 
 ```css
 .content {
@@ -732,7 +556,7 @@ Style it using CSS:
 }
 ```
 
-Note that we can access the value of the link's href by using `event.target.href`:
+Note that we can read the value of the link's href by using `event.target.href`:
 
 ```js
 function makeActive() {
@@ -741,7 +565,7 @@ function makeActive() {
 }
 ```
 
-So let's make the content of the `.content` div depend on the link's href. We will use the string method `includes` as a test for simple equality will fail:
+So let's make the HTML of the `.content` div depend on the clicked link's href. We will use and new string method `includes`:
 
 ```js
 function makeActive(event) {
@@ -753,10 +577,10 @@ function makeActive(event) {
   if (event.target.href.includes("chefs")) {
     contentPara.innerHTML = chefs;
   }
-
-
 }
 ```
+
+`string.includes` is a function that returns `true` if the string contains the substring and `false` if it does not.
 
 Expand the conditions:
 
@@ -778,43 +602,31 @@ function makeActive(event) {
 }
 ```
 
-NB: we have a bug in our code. Everything works but `if (event.target.href.includes('cuisines'))` will _never_ be true.
+Note: we have a bug in our code. Everything works except `if (event.target.href.includes('cuisines'))`.
 
-Change the link:
+Change the link in index.html to:
 
 ```html
-<li><a href="cuisines" class="active">cuisines</a></li>
+<li><a href="foocuisinesbar" class="active">cuisines</a></li>
 ```
 
-Demo: DOM manipulation: view source.
+Note: we did not use `event.target.href === "cuisines"` because the href is a full URL and not just the work chefs, cuisines etc. Try `console.log(event.target.href)` to see what I mean.
 
-In web development parlance this is akin to what is known as a Single Page Application or "SPA".
+Demo: DOM vs HTML view source.
 
-### Aside - A Review of Design Patterns
+## SPA Design Issues
 
-Let's review the samples in `other/design-patterns` (these are non-trivial examples, you do not need to understand everything, just the basic concepts - static, fragments and SPA - single page application):
-
-- `static/cuisines.html` - uses separate HTML files
-- `fragments/index-spa-fragments` - a single page application (SPA) with scrolling
-- `spa/index-spa-js.html` - a single page application with JavaScript
-
-All three approaches are valid and common.
-
-For pedagogical purposes we have modeled our design after the last one - a single page application with JavaScript.
-
-Compare our current project with the static version above.
+Compare our current project with the static version.
 
 We cannot:
 
 - refresh the page without losing context
 - copy and paste a link to share with others
 - use back and forward buttons in the browser
-- we have very limited search engine optimization
+- we have limited search engine optimization (SEO)
 - our site will not work without JavaScript
 
 The problems with what we've built might be termed _maintaining state_ and _routing_. If you refresh the browser while you are on the Reviews tab the page reinitializes to show the Cuisines tab and content.
-
----
 
 ### Event Delegation
 
@@ -837,7 +649,14 @@ Use:
 document.addEventListener("click", makeActive);
 ```
 
-Everything works as previously however clicking on any HTML element now runs our `makeActive` function. Try clicking on the paragraph and the yellow background. We will use an if statement to ensure that the user has clicked on a link in the navbar before running our code:
+Event delegation allows us to listen for events on a parent element, determine which child element the event occurred on and change behavior based on the click event's target (the node that was clicked on). It is not strictly necessary in this simple page but it is a good habit and a feature of many JavaScript libraries.
+
+
+Everything works as previously however clicking on any HTML element now runs our `makeActive` function. 
+
+Try clicking on the paragraph and the yellow background. 
+
+We will use an if statement to ensure that the user has clicked on a link in the navbar before running our code. Note the use of `matches`:
 
 ```js
 function makeActive(event) {
@@ -860,7 +679,7 @@ function makeActive(event) {
 }
 ```
 
-We can also use an if statement and the JavaScript "not" (`!`) operator to ensure that the user has clicked on a link in the navbar before running our code:
+We can also use an if statement with the JavaScript "not" (`!`) operator. If the user hasn't clicked on a link in the navbar we simply `return` from the function which stops execution:
 
 ```js
 function makeActive(event) {
@@ -881,15 +700,17 @@ function makeActive(event) {
 }
 ```
 
-This has the advantage of being easier to read and understand.
+This has the advantage of being a bit easier to read and understand.
 
 ### Working with Objects
 
 <!-- (See `other/OBJECTS.js` using Quokka in VS Code.) -->
 
-We have seen that a NodeList is a collection of HTML nodes and that an Array is a collection of items. We can also use objects to store data.
+We can use JavaScript objects to store data.
 
-We typically store objects in a variable. Objects can be identified by their use of curly brackets - "{ ... }" - as opposed to the square brackets - [ ... ] - used for Arrays.
+An object is a collection of key-value pairs. The keys are strings and the values can be any data type.
+
+We typically store objects in a variable. Objects can be identified by their use of curly brackets - "{ ... }" - as opposed to the square brackets - [ ... ] - used for Arrays and NodeLists.
 
 Use the browser's console to enter the following:
 
@@ -904,11 +725,11 @@ obj.a;
 obj["a"];
 ```
 
-An object is a collection of key-value pairs. The keys are strings and the values can be any data type.
+In the example above `a` and `b` are the keys and `1` and `2` are the values.
 
-Note that there are two ways of accessing the value of a property in an object. The first is called "dot" notation and the second is called "bracket" notation.
+Note that there are two ways of accessing the value of a key in an object. The first is called "dot" notation and the second is called "bracket" notation.
 
-Bracket notation is useful when the property name is a string:
+Bracket notation is useful when the key is a string:
 
 ```js
 let obj = {
@@ -922,20 +743,24 @@ obj.my variable; // doesn't work
 obj["my variable"];
 ```
 
+We can add and delete keys and values from an object:
+
 ```js
 
 obj.d = 3;
+
+obj["my key"] = "my value";
 
 delete obj.a;
 
 obj
 ```
 
-The use of the term "object" is a bit problematic in JavaScript because, technically speaking, almost everything in JavaScript is an object. However, when we say "object" we are usually referring to an object that is a collection of key-value pairs.
+Note: the use of the term "object" is a bit problematic in JavaScript because, technically speaking, almost everything in JavaScript is an object. However, when we say "object" we are usually referring to a collection of key-value pairs in curly braces.
 
 We will switch to using objects to store our data using the file `data-object.js` which is already in the `js` directory.
 
-And delete the old definitions and add `<script src="js/data-object.js"></script>` to `index.html` before the existing script tag:
+Add `<script src="js/data-object.js"></script>` to `index.html` before the existing script tag:
 
 ```html
     <script src="js/data-object.js"></script>
@@ -965,10 +790,10 @@ Note the error in the console: `Uncaught ReferenceError: cuisines is not defined
 
 `contentPara.innerHTML = cuisines;`
 
-Reinitialize using "dot" accessor method - e.g. `data.cuisines`:
+Update the script to use the "dot" accessor method for objects - e.g. `data.cuisines`:
 
 ```js
-contentPara.innerHTML = data.cuisines; // NEW
+contentPara.innerHTML = data.cuisines;
 ```
 
 And use the accessor in the makeActive function:
@@ -993,11 +818,11 @@ function makeActive(event) {
 }
 ```
 
-Note: we did not use `event.target.href === "cuisines"` because the href is a full URL and not just the work chefs, cuisines etc. Try `console.log(event.target.href)` to see what I mean.
-
 Our page is still pretty fragile. Hitting refresh still defaults to the cuisines page and the back button doesn't work. Let's fix it by getting the page contents based on the address in the browser's address bar.
 
-Change the href values to use hashes:
+We are using `event.preventDefault()` and so the browser's location bar never changes. 
+
+Change the href values in the nav to use hashes:
 
 ```html
 <nav>
@@ -1010,24 +835,11 @@ Change the href values to use hashes:
 </nav>
 ```
 
-Remove `event.preventDefault()` from the script. We no longer need it since we are no loner using the href attribute to get the content.
+Remove `event.preventDefault();` from the script. We no longer need it since hashes do not trigger a page change and refresh. 
 
-<!-- Remove the hardcoded active class - `<li><a href="cuisines" class="active">cuisines</a></li>` - in the HTML:
+Paste `window.location` in the browser console. We can use Location to get the hash.
 
-`<li><a href="cuisines">cuisines</a></li>`
-
- and set it using JavaScrpit in `scripts.js`:
-
-```js
-var tabs = document.querySelectorAll("nav a");
-var contentPara = document.querySelector(".content");
-
-document.querySelector("nav a").classList.add("active"); // NEW
-``` -->
-
-In the console try: `window.location`. This is a reference to the current URL. We can use it to get the hash.
-
-In the console try: `window.location.hash`. Note the it returns the hash with the `#` symbol followed by whatever follows, e.g. '#cuisines'.
+In the console try: `window.location.hash`. Note that it returns the hash followed by whatever follows, e.g. '#cuisines'.
 
 We can get the string without the hash from the URL using [substring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substring):
 
@@ -1056,7 +868,7 @@ function makeActive(event) {
 }
 ```
 
-Note the use of `data[...]` instead of `data.type`. We use square brackets because `type` is a string. 
+Note the use of `data[...]` instead of `data.type`. We use square brackets because `currentHash` is a string. 
 
 For example:
 
@@ -1067,13 +879,13 @@ var myObject = {
   cuisines: "testing",
 };
 
-console.log("test one: ", myObject[text]);
-console.log("test two: ", myObject.text); // doesn't work
+myObject[text]
+myObject.text // doesn't work
 ```
 
 ### Problems with the Current Approach
 
-1. we have to click on the tab twice to get the appropriate content 
+1. in certain circumstances we have to click on the tab twice to get the appropriate content 
 2. the active / inactive class switching works but not at first when we refresh the page
 
 We can see the first issue by logging the variable currentHash to the console:
@@ -1089,15 +901,15 @@ function makeActive(event) {
 }
 ```
 
-This could be a tricky bug to resolve but note that we can set the hash to a default value when the page loads. 
+This could be a tricky bug to resolve.  
 
-Try the following in the browser's location bar:
+We can set the hash to a default value when the page loads. Try the following in the browser's location bar:
 
 ```js
 window.location.hash = "foobar"
 ```
 
-We can use the [hashchange](https://developer.mozilla.org/en-US/docs/Web/API/Window/hashchange_event) event to set the content according to the hash. This event fires when the hash changes.
+We will use the [hashchange](https://developer.mozilla.org/en-US/docs/Web/API/Window/hashchange_event) event to set the content according to the hash. `hashchange` fires when the hash in the browser's location bar changes.
 
 ```js
 var tabs = document.querySelectorAll("nav a");
@@ -1108,8 +920,8 @@ function makeActive(event) {
   makeInactive();
   event.target.classList.add("active");
   // We are removing these two lines
-  // var type = window.location.hash.substring(1)
-  // contentPara.innerHTML = data[type]
+  // var currentHash = window.location.hash.substring(1)
+  // contentPara.innerHTML = data[currentHash]
 }
 
 function makeInactive() {
@@ -1128,7 +940,7 @@ document.addEventListener("click", makeActive);
 window.addEventListener("hashchange", setContentAccordingToHash); // NEW
 ```
 
-When we first arrive at the page it is blank and there is no highlighted tab. We will add a new function called `initializePage` to set the default view:
+When a user first arrives at the page there will be no hash - the page will be blank and there will be no highlighted tab. We will add a new function called `initializePage` to set the default view:
 
 ```js
 var tabs = document.querySelectorAll("nav a");
@@ -1149,6 +961,7 @@ function setContentAccordingToHash() {
   contentPara.innerHTML = data[currentHash];
 }
 
+// NEW
 function initializePage() {
   document.querySelector("nav a").classList.add("active");
   window.location.hash = "cuisines";
@@ -1158,19 +971,21 @@ function initializePage() {
 document.addEventListener("click", makeActive);
 window.addEventListener("hashchange", setContentAccordingToHash);
 
-initializePage();
+initializePage(); // NEW
 ```
 
-Now that we are using a hash we can look for it when the page loads and then derive a solution for the refresh button:
+Refreshing the page still resets the content to cuisines. 
+
+Now that we are using a hash to set the content we can also use it when the page loads to derive a solution for the refresh button:
 
 ```js
 function initializePage() {
-  // set some defaults if there is no hash
+  // set a default if there is no hash
   if (!window.location.hash) {
     window.location.hash = "cuisines";
     document.querySelector('nav a').classList.add("active");
   } else {
-    // if there is a hash set the active tab accordingly
+    // if there is a hash set the active tab according to the hash
     document
       .querySelector('[href="' + window.location.hash + '"] ')
       .classList.add("active");
@@ -1179,40 +994,47 @@ function initializePage() {
 }
 ```
 
-Note the use of [attribute selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors) and concatenation. Using the attribute selector we can select the first anchor tag with the href cuisines:
+Refreshing the page now maintains the active tab and the content.
+
+Note the use of [attribute selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors) and concatenation. 
+
+We can use an attribute selector to select the anchor tag with the href cuisines in our `initializePage` function:
 
 ```js
 document.querySelector('[href="#cuisines"]').classList.add("active");
 ```
 
-We'll replace our concatination with template strings (aka string literals).
+Next we'll replace our concatination with template strings (aka string literals).
+
+Template strings allow us to use multi-line strings and to embed expressions inside strings. They are a replacement for old school string concatination.
 
 Here is a comparison of old school text concatination and template strings:
 
 ```js
 const name = "Yorik";
 const age = 2;
-const oldSchool =
-  "My dog's name is " + name + " and he is " + age * 7 + " years old.";
 
-const newSchool = `My dog's name is ${name} and he is ${age * 7} years old.`;
-console.log("oldschool ", oldschool);
-console.log("newschool ", newschool);
+const oldSchool =
+  "My name is " + name + " and I am " + age * 7 + " years old.";
+oldschool
+
+const newSchool = `My name is ${name} and I am ${age * 7} years old.`;
+newschool
 ```
 
 Here is another example showing how we often create HTML using template strings:
 
 ```js
-var temp = {
+var data = {
   section: "cuisines",
   story: "Lorem ipsum dolor sit amet.",
 };
 
-var phraseOne = "<h1>" + temp.section + "</h1>" + "<p>" + temp.story + "</p>";
+var htmlBlock = "<h1>" + data.section + "</h1>" + "<p>" + data.story + "</p>";
 
-var phraseTwo = `
-    <h1>${temp.section}</h1> 
-    <p>${temp.story}</p>
+var htmlBlockTwo = `
+    <h1>${data.section}</h1> 
+    <p>${data.story}</p>
 `;
 ```
 
@@ -1230,27 +1052,27 @@ We will change it to:
 .querySelector(`[href="${window.location.hash}"]`)
 ```
 
-We can use the hash change to determine both the active tab and the content being displayed. We can remove the click event listener.
+We can use the hash change to determine *both* the active tab and the content being displayed.
 
 This also makes it easier to reset both the active state and content when the browser's forward and back arrows are used.
 
-Since we can change the active tab and the content based on the hash we can remove the click event listener:
+Remove the click event listener:
 
 ```js
 document.addEventListener("click", makeActive);
 ```
 
-And add a call to makeActive in the setContentAccordingToHash function which passes the hash to makeActive:
+And add a call to makeActive in the `setContentAccordingToHash` function which passes the hash to makeActive:
 
 ```js
 makeActive(currentHash);
 ```
 
-And in makeActive we receive the hash and use it to set the active tab:
+And in `makeActive` we receive the currentHash and use it to set the active tab instead of `event.target`:
 
 ```js
 function makeActive(currentHash) {
-  makeAllTabsInactive();
+  makeInactive();
   var tabToActivate = document.querySelector(`a[href="#${currentHash}"]`);
   tabToActivate.classList.add("active");
 }
@@ -1300,53 +1122,26 @@ initializePage();
 
 Initialize git and Add and Commit all changes. Create a new branch called `data-array` and check it out before continuing.
 
-<!-- ## Aside - Data Attributes
-
-Add [data attributes](https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes) to the HTML:
-
-```html
-<ul>
-  <li>
-    <a data-story="cuisines" href="#cuisines" class="active">cuisines</a>
-  </li>
-  <li>
-    <a data-story="chefs" href="#chefs">chefs</a>
-  </li>
-  <li>
-    <a data-story="reviews" href="#reviews">reviews</a>
-  </li>
-  <li>
-    <a data-story="delivery" href="#delivery">delivery</a>
-  </li>
-</ul>
-```
-
-Use dataset and bracket notation when accessing an object's property via a variable:
-
-```js
-function makeActive() {
-  ...
-  let activePage = document.querySelector('.active');
-  let storyRef = activePage.dataset.story;
-  contentPara.innerHTML = data[storyRef];
-}
-```
- -->
-
 ### An Array of Objects
 
 This is an extremely common format for data to be sent from a server for use in a page.
 
 ```txt
 https://api.nasa.gov/
+https://api.nasa.gov/planetary/apod?api_key=fj9a8bBmnYgdbmBX8aYEhhdeSJfBVk3JYWlOjPSc
 
 https://docs.spacexdata.com/
+https://api.spacexdata.com/v3/capsules
 
-https://api.nytimes.com/svc/topstories/v2/travel.json?api-key=uQG4jhIEHKHKm0qMKGcTHqUgAolr1GM0
+https://developer.nytimes.com/
+https://api.nytimes.com/svc/topstories/v2/travel.json?api-key=XJYe53T8oZ9wRgPqxGVAs2NtPqId5pdL
 
+https://pokeapi.co
 https://pokeapi.co/api/v2/pokemon/
+https://pokeapi.co/api/v2/pokemon/3/
 
-https://www.reddit.com/r/BudgetAudiophile.json
+https://www.reddit.com/r/BudgetAudiophile/
+https://www.reddit.com/r/BudgetAudiophile.jsonw
 ```
 
 Examine `js/data-array.js`:
@@ -1388,20 +1183,31 @@ The page will not work because we are using the wrong data structure. We will ne
 
 We will loop through our new data array using an if statement in order to find a match for our currentHash variable.
 
+Compare the following two code snippets:
+
+```js
+// runs on page load and whenever the hash changes
+function setContentAccordingToHash() {
+  var currentHash = window.location.hash.substring(1);
+  contentPara.innerHTML = data[currentHash];
+  makeActive(currentHash);
+}
+```
+
 ```js
 // runs on page load and whenever the hash changes
 function setContentAccordingToHash() {
   const currentHash = window.location.hash.substring(1);
   for (var i = 0; i < data.length; i++) {
     if (data[i].section === currentHash) {
-      contentPara.innerHTML = data[i].story;
+      contentPara.innerHTML = data[i].section;
       makeActive(currentHash);
     }
   }
 }
 ```
 
-We could also use the array's `forEach` method instead of a for loop:
+<!-- We could also use the array's `forEach` method instead of a for loop:
 
 ```js
 function setContentAccordingToHash() {
@@ -1427,13 +1233,12 @@ function setContentAccordingToHash() {
     }
   }
 }
-```
+``` -->
 
 We can use a template string (string literal) to create HTML that uses both the section and story elements:
 
 ```js
 if (item.section === currentHash) {
-  // contentPara.innerHTML = item.story
   contentPara.innerHTML = `<h2>${item.section}</h2> <p>${item.story}</p>`;
   makeActive(currentHash);
 }
@@ -1445,11 +1250,10 @@ e.g.:
 // runs on page load and whenever the hash changes
 function setContentAccordingToHash() {
   const currentHash = window.location.hash.substring(1);
-  for (var item of data) {
-    if (item.section === currentHash) {
-      // contentPara.innerHTML = item.story
-      contentPara.innerHTML = `<h2>${item.section}</h2> <p>${item.story}</p>`;
-      setActiveTabAccordingToHash(currentHash);
+  for (var i = 0; i < data.length; i++) {
+    if (data[i].section === currentHash) {
+      contentPara.innerHTML = `<h2>${data[i].section}</h2> <p>${data[i].story}</p>`;
+      makeActive(currentHash);
     }
   }
 }
@@ -1486,9 +1290,9 @@ function makeInactive() {
 // runs on page load and whenever the hash changes
 function setContentAccordingToHash() {
   const currentHash = window.location.hash.substring(1);
-  for (var item of data) {
-    if (item.section === currentHash) {
-      contentPara.innerHTML = `<h2>${item.section}</h2> <p>${item.story}</p>`;
+  for (var i = 0; i < data.length; i++) {
+    if (data[i].section === currentHash) {
+      contentPara.innerHTML = `<h2>${data[i].section}</h2> <p>${data[i].story}</p>`;
       makeActive(currentHash);
     }
   }
@@ -1507,730 +1311,3 @@ window.addEventListener("hashchange", setContentAccordingToHash);
 document.addEventListener("DOMContentLoaded", initializePage);
 ```
 
-# Homework and Review
-
-Review the material below and do the assignment and the end.
-
-## Selectors
-
-How to get elements in the DOM.
-
-### document.querySelectorAll();
-
-Find all matching elements on a page. You can use any valid CSS selector.
-
-```js
-// Get all button elements
-let buttons = document.querySelectorAll("button");
-
-// Get all elements with the .bg-red class
-let elemsRed = document.querySelectorAll(".bg-red");
-
-// Get all elements with the [data-snack] attribute
-let elemsSnacks = document.querySelectorAll("[data-snack]");
-```
-
-### document.querySelector();
-
-Find the first matching element on a page.
-
-```js
-// The first button
-let button = document.querySelector("button");
-
-// The first element with the .bg-red class
-let red = document.querySelector(".bg-red");
-
-// The first element with a data attribute of snack equal to carrots
-let carrots = document.querySelector('[data-snack="carrots"]');
-```
-
-If an element isn’t found, querySelector() returns null. If you try to do something with the nonexistent element, an error will get thrown. You should check that a matching element was found before using it.
-
-```js
-// An element that doesn't exist
-let none = document.querySelector(".bg-orange");
-
-// Verify element exists before doing anything with it
-if (none) {
-  // Do something...
-}
-```
-
-## Element.matches()
-
-Check if an element would be selected by a particular selector or set of selectors. Returns true if the element is a match, and false when it’s not.
-
-```js
-// Check if the first .bg-red element has the [data-snack attribute]
-let red = document.querySelector(".bg-red");
-if (red.matches("[data-snack]")) {
-  console.log("Yummy snack!");
-} else {
-  console.log("No snacks");
-}
-```
-
-## Type-specific selector methods
-
-There are other selector methods that target elements by specific type.
-
-The document.getElementById() method gets elements by their ID, predates IE6. The document.getElementsByName() method returns a NodeList of elements with matching [name] attributes. It also has deep backwards compatibility.
-
-If you wanted to get all elements of a certain type, you could use document.getElementsByTagName(), which works back to IE6. And the new kid on the block, document.getElementsByClassName(), gets all elements that match a specific class. It works in IE9 and up.
-
-I don’t recommend using any of them.
-
-I’m lazy. I don’t like to think about which selector is the right one to use. The document.querySelector() and document.querySelectorAll() methods do everything those other methods do and more.
-
-The toughest decision I have to make is whether I need all matching elements or just the first one.
-
-## Loops
-
-How to loop through arrays, objects, and array-like objects.
-
-### for
-
-Loop through arrays, NodeLists, and other array-like objects.
-
-```js
-let sandwiches = ["turkey", "tuna", "ham", "pb&j"];
-
-// logs 0, "tuna", 1, "ham", 2, "turkey", 3, "pb&j"
-for (let i = 0; i < sandwiches.length; i++) {
-  console.log(i); // index
-  console.log(sandwiches[i]); // value
-}
-```
-
-In the first part of the loop, before the first semicolon, we set a counter variable (typically i, but it can be anything) to 0.
-The second part, between the two semicolons, is the test we check against after each iteration of the loop. In this case, we want to make sure the counter value is less than the total number of items in our array. We do this by checking the .length of our array.
-Finally, after the second semicolon, we specify what to run after each loop. In this case, we’re adding 1 to the value of i with i++.
-We can then use i to grab the current item in the loop from our array.
-
-### for…of
-
-Loop over iterable objects. That includes strings, arrays, and other array-like objects such as NodeLists, HTMLCollections, and HTMLFormControlsCollection, but not plain objects ({}).
-
-In a for...of loop, you define a variable to represent the current item of the iterable that you’re looping through. Inside the block (the stuff between curly brackets), you can use that variable to reference the current item.
-
-```js
-let sandwiches = ["turkey", "tuna", "ham", "pb&j"];
-
-// logs "tuna", "ham", "turkey", "pb&j"
-for (let sandwich of sandwiches) {
-  console.log(sandwich);
-}
-```
-
-### for…in
-
-## Loop over plain objects ({}).
-
-The first part, key, is a variable that gets assigned to the object key on each loop. The second part (in the example below, lunch), is the object to loop over.
-
-In a for...in loop, you define a variable to represent the key in the object that you’re looping through. Inside the block (the stuff between curly brackets), you can use that variable to get the key name and the value of that key.
-
-```js
-let lunch = {
-  sandwich: "ham",
-  snack: "chips",
-  drink: "soda",
-  desert: "cookie",
-  guests: 3,
-  alcohol: false,
-};
-
-// logs "sandwich", "ham", "snack", "chips", "drink", "soda", "desert", "cookie", "guests", 3, "alcohol", false
-for (let key in lunch) {
-  console.log(key); // key
-  console.log(lunch[key]); // value
-}
-```
-
-### Skipping and ending loops
-
-You can skip to the next item in a loop using continue, or end the loop altogether with break. These work with for, for...of, and for...in loops.
-
-```js
-/**
- * Skipping a loop
- */
-let sandwiches = ["turkey", "tuna", "ham", "pb&j"];
-
-// logs "turkey", "tuna", "turkey", "pb&j"
-for (let sandwich of sandwiches) {
-  // Skip to the next item in the loop
-  if (sandwich === "ham") continue;
-
-  console.log(sandwich);
-}
-
-/**
- * Breaking a loop
- */
-let lunch = {
-  sandwich: "ham",
-  snack: "chips",
-  drink: "soda",
-  desert: "cookie",
-  guests: 3,
-  alcohol: false,
-};
-
-// logs "sandwich", "ham", "snack", "chips"
-for (let key in lunch) {
-  if (key === "drink") break;
-  console.log(lunch[key]);
-}
-```
-
-## Array.forEach() and NodeList.forEach()
-
-The Array.forEach() and NodeList.forEach() methods provide a simpler way to iterate over arrays and NodeLists while still having access to the index.
-
-You pass a callback function into the forEach() method. The callback itself accepts three arguments: the current item in the loop, the index of the current item in the loop, and the array itself. All three are optional, and you can name them anything you want.
-
-```js
-let sandwiches = ["turkey", "tuna", "ham", "pb&j"];
-
-// logs 0, "tuna", 1, "ham", 2, "turkey", 3, "pb&j"
-sandwiches.forEach(function (sandwich, index) {
-  console.log(index); // index
-  console.log(sandwich); // value
-});
-```
-
-Unlike with for, for...of, and for...in loops, you can’t end a forEach() callback function before it’s looped through all items. You can return to end the current loop (like you would with continue), but there’s no way to break the loop.
-
-Because of that, I generally prefer using a for...of loop unless I explicitly need the index.
-
-```js
-// Skip "ham"
-// logs 0, "tuna", 2, "turkey", 3, "pb&j"
-sandwiches.forEach(function (sandwich, index) {
-  if (sandwich === "ham") return;
-  console.log(index); // index
-  console.log(sandwich); // value
-});
-```
-
-## Classes
-
-How to add, remove, toggle, and check for classes on an element.
-
-### Element.classList
-
-The Element.classList API provides a simple way to add, remove, toggle, and check for classes on an element.
-
-Use the add() method to add a class, the remove() method to remove a class, the toggle() method to toggle a class on or off, and the contains() method to check if a class exists.
-
-```js
-let elem = document.querySelector("#sandwich");
-
-// Add the .turkey class
-elem.classList.add("turkey");
-
-// Remove the .tuna class
-elem.classList.remove("tuna");
-
-// Toggle the .tomato class on or off
-// (Add the class if it's not already on the element, remove it if it is.)
-elem.classList.toggle("tomato");
-
-// Check if an element has the .mayo class
-if (elem.classList.contains("mayo")) {
-  console.log("add mayo!");
-}
-```
-
-### Element.className
-
-Get all of the classes on an element as a string, add a class or classes, or completely replace or remove all classes.
-
-```js
-let elem = document.querySelector("div");
-
-// Get all of the classes on an element
-let elemClasses = elem.className;
-
-// Add a class to an element
-elem.className += " vanilla-js";
-
-// Completely replace all classes on an element
-elem.className = "new-class";
-```
-
-## Styles
-
-How to get and set styles (as in, CSS) for an element.
-
-Vanilla JavaScript uses camel cased versions of the attributes you would use in CSS. The Mozilla Developer Network provides a comprehensive list of available attributes and their JavaScript counterparts.
-
-### Inline Styles
-
-Get and set inline styles for an element with the Element.style property.
-
-The Element.style property is a read-only object. You can get and set individual style properties on it using camelCase style names as properties on the Element.style object.
-
-```js
-<p id="sandwich" style="background-color: green; color: white;">
-  Sandwich
-</p>;
-
-let sandwich = document.querySelector("#sandwich");
-
-// Get a style
-// If this style is not set as an inline style directly on the element, it returns an empty string
-let bgColor = sandwich.style.backgroundColor; // this will return "green"
-let fontWeight = sandwich.style.fontWeight; // this will return ""
-
-// Set the background-color style property
-sandwich.style.backgroundColor = "purple";
-```
-
-You can also get and set a string representation of the entire inline style property on the element itself with the Element.style.cssText property.
-
-```js
-// Get the styles on an element
-// returns "background-color: green; color: white;"
-let styles = sandwich.style.cssText;
-
-// Completely replace the inline styles on an element
-sandwich.style.cssText = "font-size: 2em; font-weight: bold;";
-
-// Add additional styles
-sandwich.style.cssText += "color: purple;";
-```
-
-### Computed Styles
-
-The window.getComputedStyle() method gets the actual computed style of an element. This factors in browser default stylesheets as well as external styles being used on the page.
-
-```js
-let sandwich = document.querySelector("#sandwich");
-let bgColor = window.getComputedStyle(sandwich).backgroundColor;
-```
-
-## Attributes & Properties
-
-How to get, set, and remove attributes for an element.
-
-Element.getAttribute(), Element.setAttribute(), Element.removeAttribute(), and Element.hasAttribute()
-
-Get, set, remove, and check for the existence of attributes (including data attributes) on an element.
-
-If an attribute does not exist on an element, the Element.getAttribute() method returns null.
-
-```js
-let elem = document.querySelector("#lunch");
-
-// Get the value of the [data-sandwich] attribute
-let sandwich = elem.getAttribute("data-sandwich");
-
-// Set a value for the [data-sandwich] attribute
-elem.setAttribute("data-sandwich", "turkey");
-
-// Remove the [data-chips] attribute
-elem.removeAttribute("data-chips");
-
-// Check if an element has the `[data-drink]` attribute
-if (elem.hasAttribute("data-drink")) {
-  console.log("Add a drink!");
-}
-```
-
-## Properties
-
-HTML elements have dozens of properties that you can access directly.
-
-Some of them are read only, meaning you can get their value but not set it. Others can be used to both read and set values. You can find a full list on the Mozilla Developer Network.
-
-```js
-let elem = document.querySelector("#main");
-
-// Get the ID of the element
-// returns "main"
-let id = elem.id;
-
-// Set the ID of the element
-elem.id = "secondary";
-
-// Get the parentNode of the element
-// This property is read-only
-let parent = elem.parentNode;
-```
-
-## Attributes vs. Properties
-
-In JavaScript, an element has attributes and properties. The terms are often used interchangeably, but they’re actually two separate things.
-
-An attribute is the initial state when rendered in the DOM. A property is the current state.
-
-In most cases, attributes and properties are kept in-sync automatically. For example, when you use setAttribute() to update an ID attribute, the id property is updated as well.
-
-```html
-<p>Hello</p>
-```
-
-```js
-let p = document.querySelector("p");
-
-// Update the ID
-p.setAttribute("id", "first-paragraph");
-
-// These both return "first-paragraph"
-let id1 = p.getAttribute("id");
-let id2 = p.id;
-```
-
-However, user-changeable form properties—noteably, value, checked, and selected—are not automatically synced.
-
-```js
-<label for="greeting">Greeting</label>
-<input type="text" id="greeting">
-```
-
-```js
-let greeting = document.querySelector("#greeting");
-
-// Update the value
-greeting.setAttribute("value", "Hello there!");
-
-// If you haven't made any updates to the field, these both return "Hello there!"
-// If you HAVE updated the field, val1 returns whatever was typed in the field instead
-let val1 = greeting.value;
-let val2 = greeting.getAttribute("value");
-```
-
-If you try to update the value property directly, that will update the UI.
-
-```js
-greeting.value = "Hello there!";
-```
-
-This allows you to choose different approaches depending on whether you want to overwrite user updates or not.
-
-If you want to update a field, but only if the user hasn’t made any changes, use Element.setAttribute(). If you want to overwrite anything they’ve done, use the value property.
-
-## Event Listeners
-
-How to listen for browser events and run callback functions when they happen.
-
-### EventTarget.addEventListener()
-
-Listen for events on an element. You can find a full list of available events on the Mozilla Developer Network.
-
-Run the EventTarget.addEventListener() method on the element you want to listen for events on. It accepts two arguments: the event to listen for, and a callback function to run when the event happens.
-
-You can pass the event into the callback function as an argument. The event.target property is the element that triggered the event. The event object has other properties as well, many of them specific to the type of event that occurred.
-
-```js
-let btn = document.querySelector("#click-me");
-
-btn.addEventListener("click", function (event) {
-  console.log(event); // The event details
-  console.log(event.target); // The clicked element
-});
-```
-
-### Multiple Targets
-
-The EventTarget.addEventListener() method only be attached to an individual element. You can’t attach it to an array or node list of matching elements like you might in jQuery or other frameworks.
-
-```js
-// This won't work!
-let btns = document.querySelectorAll(".click-me");
-
-btns.addEventListener("click", function (event) {
-  console.log(event); // The event details
-  console.log(event.target); // The clicked element
-});
-```
-
-For performance reasons, you also should not loop over each element and attach an even listener to it.
-
-```js
-/**
- * This works, but it's bad for performance
- * DON'T DO IT!
- */
-let btns = document.querySelectorAll(".click-me");
-
-for (let btn of btns) {
-  btn.addEventListener("click", function (event) {
-    console.log(event); // The event details
-    console.log(event.target); // The clicked element
-  });
-}
-```
-
-Fortunately, there’s a really easy and performant way to get a jQuery-like experience: event delegation or event bubbling.
-
-Instead of listening for an event on specific elements, you attach your listener to a parent element that your elements are contained within, such as the window or document. Events that happens on elements inside it bubble up. We can then check to see if the item that triggered the event has a matching selector.
-
-```js
-// Listen for clicks on the entire window
-document.addEventListener("click", function (event) {
-  // If the clicked element has the `.click-me` class, it's a match!
-  if (event.target.matches(".click-me")) {
-    // Do something...
-  }
-});
-```
-
-Yes, it is actually better for performance to listen to all clicks on the document than have a bunch of individual event listeners.
-
-As a side benefit, you can dynamically load matching elements to the DOM after the event listener is already set up and it will still work.
-
-### Capturing events that don’t bubble
-
-Certain events, like focus, don’t bubble. In order to use event delegation with events that don’t bubble, you can set an optional third argument on the EventTarget.addEventListener() method, called useCapture, to true.
-
-```js
-// Listen for all focus events in the document
-document.addEventListener(
-  "focus",
-  function (event) {
-    // Run functions whenever an element in the document comes into focus
-  },
-  true
-);
-```
-
-You can determine if useCapture should be set to true or false by looking at the event details page on the Mozilla Developer Network (like this one for the focus event).
-
-If Bubbles in the chart at the top of the page is “No,” you need to set useCapture to true to use event delegation.
-
-### Multiple Events
-
-In vanilla JavaScript, each event type requires it’s own event listener. Unfortunately, you can’t pass in multiple events to a single listener.
-
-This won't work:
-
-```js
-window.addEventListener("click, scroll", function (event) {
-  console.log(event); // The event details
-  console.log(event.target); // The clicked element
-});
-```
-
-Instead, create a named function and pass that into your event listener. This lets you avoid writing the same code over and over again, and keeps your code more DRY.
-
-For named callback functions, do not include the parentheses (()) on the function.
-
-The event object is automatically passed in as an argument. You can determine which type of event triggered the callback function with the event.type property.
-
-```js
-// Setup our function to run on various events
-function logTheEvent(event) {
-  console.log("The following event happened: " + event.type);
-}
-
-// Add our event listeners
-document.addEventListener("click", logTheEvent);
-window.addEventListener("scroll", logTheEvent);
-```
-
-## Assignment
-
-We’ll build a script that let’s users toggle the visibility of password fields in a form.
-
-The starter template:
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Project Complete</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <style type="text/css">
-      body {
-        margin: 0 auto;
-        max-width: 40em;
-        width: 88%;
-      }
-
-      label,
-      input {
-        display: block;
-        width: 100%;
-      }
-
-      input {
-        margin-bottom: 1em;
-      }
-    </style>
-  </head>
-
-  <body>
-    <h1>Change Password</h1>
-
-    <form>
-      <label for="current-pw">Current Password</label>
-      <input type="password" id="current-pw" />
-
-      <label for="new-pw">New Password</label>
-      <input type="password" id="new-pw" />
-
-      <p><button type="button" data-password>Show Passwords</button></p>
-
-      <p><button>Change Password</button></p>
-    </form>
-
-    <script>
-      // Code goes here...
-    </script>
-  </body>
-</html>
-```
-
-### Getting Setup
-
-The template has some starting markup: a form with two password fields and some buttons.
-
-In the form, there’s a button with the [data-password] attribute that will be used to toggle the password field visibility. That button has two additional attributes.
-
-The [type="button"] attribute prevents the button from submitting the form when clicked.
-
-```html
-<form>
-  <label for="current-pw">Current Password</label>
-  <input type="password" id="current-pw" />
-
-  <label for="new-pw">New Password</label>
-  <input type="password" id="new-pw" />
-
-  <p><button type="button" data-password>Show Passwords</button></p>
-
-  <p><button>Change Password</button></p>
-</form>
-```
-
-### Listening for clicks
-
-The first thing we want to do is detect clicks on our [data-password] button. Let’s use the document.querySelector() method to get button and save it to the toggle variable.
-
-```js
-// Get the password toggle
-let toggle = document.querySelector("[data-password]");
-```
-
-Next, we’ll use the addEventListener() method to listen for click events on it, and do things when the button is clicked.
-
-```js
-// Get the password toggle
-let toggle = document.querySelector("[data-password]");
-
-// Listen for clicks on the toggle button
-toggle.addEventListener("click", function (event) {
-  // Do stuff...
-});
-```
-
-### Determining whether to show or hide passwords
-
-When the button is clicked, we need to determine if we should show or hide passwords. One simple way to do that is to check if the button is currently selected or not.
-
-The [aria-pressed] attribute is used to tell screen readers (software that people with visual impairments use to interact with web pages) if a state-based button like this one is pressed or not. It’s exactly what we need.
-
-The [aria-pressed] attribute has a value of true when the button is selected, and false when it’s not. Let’s start by adding it to our button.
-
-```html
-<button type="button" data-password aria-pressed="false">Show Passwords</button>
-```
-
-Inside our event listener’s callback function, we can check the value of the [aria-pressed] attribute to determine if the button is currently active or not.
-
-We’ll use the event.target to get the button that triggered the click event. We could use our toggle variable, but I want to show the different options you have.
-
-We’ll use the `getAttribute()` method to get the value of [aria-pressed].
-
-```js
-// Listen for clicks on the toggle button
-toggle.addEventListener("click", function (event) {
-  // Get the value of the [aria-pressed] attribute
-  let pressed = event.target.getAttribute("aria-pressed");
-});
-```
-
-Next, we’ll use the equals operator (===) to check if pressed has a value of false.
-
-If it does, we need to show the password fields and update the value of [aria-pressed] to true. If not, we need to hide the fields and change the value to false.
-
-We can use the setAttribute() method to set the [aria-pressed] attribute.
-
-```js
-// Listen for clicks on the toggle button
-toggle.addEventListener("click", function (event) {
-  // Get the value of the [aria-pressed] attribute
-  let pressed = event.target.getAttribute("aria-pressed");
-
-  // If button isn't pressed yet, press it and show fields
-  // Otherwise, unpress it and hide the fields
-  if (pressed === "false") {
-    event.target.setAttribute("aria-pressed", "true");
-    // Show the fields...
-  } else {
-    event.target.setAttribute("aria-pressed", "false");
-    // Hide the fields...
-  }
-});
-```
-
-### Showing and hiding passwords
-
-Use the document.querySelectorAll() method to get all fields with the [type="password"] attribute.
-
-```js
-// Get the password toggle and password fields
-let toggle = document.querySelector("[data-password]");
-let fields = document.querySelectorAll('[type="password"]');
-```
-
-We’ll use a for...of loop to loop through each of our fields, and the type property to update the field type as needed.
-
-If the password should be visible, we’ll change the type to text. If it should be hidden, we’ll change it back to password.
-
-```js
-// Listen for clicks on the toggle button
-toggle.addEventListener("click", function (event) {
-  // Get the value of the [aria-pressed] attribute
-  let pressed = event.target.getAttribute("aria-pressed");
-
-  // If button isn't pressed yet, press it and show fields
-  // Otherwise, unpress it and hide the fields
-  if (pressed === "false") {
-    event.target.setAttribute("aria-pressed", "true");
-    for (let field of fields) {
-      field.type = "text";
-    }
-  } else {
-    event.target.setAttribute("aria-pressed", "false");
-    for (let field of fields) {
-      field.type = "password";
-    }
-  }
-});
-```
-
-Now, the passwords will show or hide based on the button state.
-
-### Styling the button
-
-Attributes can be used to style elements just like classes and IDs.
-
-Since the [aria-pressed] attribute already holds information about whether or not the button is selected, it makes sense to use it to style the button visually as well. Let’s give a blue background with white text when it’s active.
-
-Active Button Style:
-
-```css
-[aria-pressed="true"] {
-  background-color: #0088cc;
-  color: #ffffff;
-}
-```
-
--- END --

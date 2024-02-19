@@ -2,7 +2,7 @@ html {
   scroll-behavior: smooth;
 }
 body {
-  margin: 0;
+  margin: 3.5rem 0;
   font-family: "Lucida Grande", sans-serif;
   font-size: 100%;
   padding-bottom: 100rem;
@@ -11,7 +11,7 @@ body {
   display: flex;
   background: #ffcb2d;
   margin: 0;
-  padding: 10px 0 0 46px;
+  padding: 14px 0 0 46px;
   list-style: none;
   background: linear-gradient(to bottom, #ffcb2d 0%, #ffcb2d 96%, #9b8748 100%);
   position: fixed;
@@ -57,10 +57,11 @@ body {
   border-bottom: none;
 }
 
+main {
+  max-width: 480px;
+}
+
 div {
-  height: 10rem;
-  /* border: 1px solid #9b8748; */
-  padding-top: 4rem;
   padding-left: 46px;
-  margin-top: 2rem;
+  padding-top: 2rem;
 }
