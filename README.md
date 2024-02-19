@@ -29,7 +29,7 @@ Continue with the Front End Masters - the entire [CSS section](https://frontendm
 
 ### Part Two
 
-Begin with the [JavaScript section](https://frontendmasters.com/courses/web-development-v3/javascript-overview/).
+Begin the [JavaScript section](https://frontendmasters.com/courses/web-development-v3/javascript-overview/).
 
 ## The Terminal
 
@@ -57,7 +57,7 @@ $ ls -al
 
 Demo: tab completion and history.
 
-Demo: on a mac you can `cd` into a folder via drag and drop or by copying and pasting a folder into the terminal.
+Demo: you can easily `cd` into a folder via drag and drop or by copying and pasting a folder into the terminal after the `cd` command: `cd <pasted-folder-name>`.
 
 Before continuing we will run the following commands:
 
@@ -128,7 +128,13 @@ You will be introduced to:
 
 Today we will be building a single page application - there is only one HTML page and JavaScript creates "the illusion" of multiple pages using what are frequently referred to as "views."
 
-This is a common pattern in modern web development. A "single page application" is often refered to as a "SPA". These pages are often built using frontend libraries such as React, Angular or Vue. We will be using vanilla JavaScript which should give you a better understanding of how browsers function and introduce you to concepts such as routing - managing the state of the page based on the browser's location.
+This is a common design pattern in modern web development. These types of sites are often built using frontend libraries such as React, Angular or Vue. We will be using vanilla JavaScript.
+
+You should have you a better understanding of: 
+
+- how browsers function internally
+- routing or how the browser determines what content to display based on the URL
+- managing the state (data) of the page based on the browser's location
 
 We will examine various design patterns shortly.
 
@@ -189,7 +195,7 @@ Note the presence of `package.json` in today's folder. Examine it in VS Code.
 
 - demo installing dependencies. Note the `node_modules` folder and the "lock" file.
 
-Node modules are generally stored and developed on Github as repositories and registered as packages on a registry. The most common registry is [NPMJS](https://www.npmjs.com/).
+Node modules are generally stored and developed on Github as repositories and registered as packages on a registry. The most common registry is [NPM](https://www.npmjs.com/).
 
 - demo running the script
 
@@ -243,25 +249,27 @@ Restart the server with `$ npm run start`.
 
 ## A Review of Design Patterns
 
-Let's review the samples in `other/design-patterns`:
+Let's review three common design patterns: 
 
-- `Static` - uses separate HTML files to create a functioning web site
-- `Fragments` - a single page application (SPA) that uses link fragments to navigate
-- `SPA` - a single page application with JavaScript
+- [Static](https://designpatterns.netlify.app/static/reviews) - uses separate HTML files to create a functioning web site
+- [Fragments](https://designpatterns.netlify.app/fragments/) - a single page application (SPA) that uses link fragments to navigate
+- [SPA](https://designpatterns.netlify.app/spa/) - a single page application with JavaScript
 
 Compare the location bar in the browser in the three samples. The SPA and fragments samples have an index.html and hash in the URL. The static sample does not. The SPA version changes content not by scrolling to a new location but by changing the content of the page with JavaScript.
 
 All three approaches are valid and common and each has advantages and disadvantages. 
 
-The difference between the static and SPA approach is often subsumed until the rubriks "web site" vs "web app."
+The difference between the static and SPA approach is often subsumed under the rubriks "web site" vs "web app."
 
-The primary disadvantage of the multi-page static version is that any JavaScript and CSS running on the page is reinitialized and/or reloaded when a new page is loaded. This inability to maintain the state of data across views makes it unsuitable for web applications. The advantages include better search engine optimization (SEO), the ability to share links with others and to easily a back button among others. 
+The primary disadvantage of the multi-page static version is that any JavaScript and CSS running on the page is reinitialized and/or reloaded when a new page is loaded. This inability to maintain the state of data across views makes it unsuitable for web applications. The advantages include better search engine optimization (SEO), the ability to share links with others and to use a back button among others. 
 
-The primary advantage of the SPA is that it does not reinitialize JavaScript (or CSS for that matter) because there is only one HTML page - just with different views. It can work more like a web application (think Gmail or Google Docs for example).
+The primary advantage of the SPA is that it does not reinitialize JavaScript (or CSS for that matter) because there is only one HTML page - just with different views. It can work more like a desktop application (think Gmail or Google Docs for example).
 
-The fragments page is a compromise between the two. It maintains state across views and does not require JavaScript to be reinitialized. It is a good choice for a web site that needs to maintain state across views but does not need to be a full web application.
+The fragments page is a compromise between the two. It maintains state across views and does not reinitialize JavaScript. It is a good choice for a web site that needs to maintain state across views but does not need to be a full web application.
 
 For pedagogical purposes I have modeled our design after the SPA.
+
+(Note: the code for the design samples is available at `other/design-patterns` in this project.)
 
 ---
 
