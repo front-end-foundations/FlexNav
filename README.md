@@ -14,12 +14,15 @@
   - [A Review of Design Patterns](#a-review-of-design-patterns)
   - [Flexbox Navigation](#flexbox-navigation)
   - [JavaScript Navigation](#javascript-navigation)
+    - [JavaScript 'for' Loops](#javascript-for-loops)
+    - [Event Listeners and 'for' Loops](#event-listeners-and-for-loops)
     - [Content](#content)
   - [SPA Design Issues](#spa-design-issues)
     - [Event Delegation](#event-delegation)
     - [Working with Objects](#working-with-objects)
     - [Problems with the Current Approach](#problems-with-the-current-approach)
     - [An Array of Objects](#an-array-of-objects)
+  - [Extra Curricular](#extra-curricular)
 
 ## Homework
 
@@ -249,7 +252,7 @@ Restart the server with `$ npm run start`.
 
 ## A Review of Design Patterns
 
-Let's review three common design patterns: 
+Let's review three common [design patterns](https://designpatterns.netlify.app/): 
 
 - [Static](https://designpatterns.netlify.app/static/reviews) - uses separate HTML files to create a functioning web site
 - [Fragments](https://designpatterns.netlify.app/fragments/) - a single page application (SPA) that uses link fragments to navigate
@@ -362,7 +365,7 @@ So we can use media queries to control the layout at different screen sizes. Her
 
 ## JavaScript Navigation
 
-Add an active class to the tabs when they are clicked on.
+First we will use JavaScript to add an active class to the tabs when they are clicked on.
 
 Add a script tag to `index.html` above the closing body tag.
 
@@ -379,18 +382,20 @@ We need to use `querySelectorAll` because we are gathering more than one item:
 
 ```js
 var tabs = document.querySelectorAll("nav a");
+console.log(tabs);
 console.log(tabs[0]); // access the first item in the tabs NodeList
 ```
 
-Note that we use brackets to access the first item in the NodeList. We can also use the `length` property to see how many items are in the NodeList:
+Note that we use brackets to access items in the NodeList and that the count begines at 0. We can use the `length` property to see how many items are in the NodeList:
 
 ```js
 var tabs = document.querySelectorAll("nav a");
-console.log(tabs[0]); 
 console.log(tabs.length);
 ```
 
 We need to attach an eventListener to each of the tabs. `addEventListener()` requires you to pass in a specific, individual element to listen to. You cannot simply specify a list of elements: `tabs.addEventListener()`.
+
+### JavaScript 'for' Loops
 
 We will use a `for` loop to loop through the tabs.
 
@@ -426,6 +431,7 @@ for (let i = 0; i < tabs.length; i++) {
 }
 ```
 
+### Event Listeners and 'for' Loops
 
 Attach an event listener to each tab:
 
@@ -476,7 +482,7 @@ for (let i = 0; i < tabs.length; i++) {
 }
 ```
 
-Lets remove the active class from all tabs before we add it so that only one is active at a time:
+Lets remove the active class from all tabs (using a 'for' loop) before we add it so that only one is active at a time:
 
 ```js
 var tabs = document.querySelectorAll("nav a");
@@ -494,7 +500,7 @@ for (let i = 0; i < tabs.length; i++) {
 }
 ```
 
-To make things easier to reason about we will separate the classList removal out into its own `makeInactive` function and then call that function (`makeInactive();`):
+To make things easier to reason about we will separate the classList removal out into its own `makeInactive` function and then call that function (`makeInactive();`) from the `makeActive` function:
 
 ```js
 const tabs = document.querySelectorAll("nav a");
@@ -1319,3 +1325,32 @@ window.addEventListener("hashchange", setContentAccordingToHash);
 document.addEventListener("DOMContentLoaded", initializePage);
 ```
 
+## Extra Curricular
+
+Note: a resource usually lives at an "end point". An end point is a URL that the API uses to perform a specific action. For example, the end point for the NASA API is `https://api.nasa.gov/planetary/apod?api_key=fj9a8bBmnYgdbmBX8aYEhhdeSJfBVk3JYWlOjPSc`.
+
+In our case there is a json file avaible on Github at `https://raw.githubusercontent.com/front-end-foundations/FlexNav/master/app/js/data-array.json`.
+
+We can use the browser's `fetch` method to get the data from the URL:
+
+```js
+async function logContent() {
+  const response = await fetch("https://raw.githubusercontent.com/front-end-foundations/FlexNav/master/app/js/data-array.json");
+  const content = await response.json();
+  console.log(content);
+}
+```
+
+Typically we create a variable to store the data and a variable to store the end point:
+
+```js
+let data; // NEW
+const endPoint = "https://raw.githubusercontent.com/front-end-foundations/FlexNav/master/app/js/data-array.json"; // NEW
+
+async function logContent() {
+  const response = await fetch(endPoint);
+  const content = await response.json();
+  console.log(content);
+  data = content; // NEW
+}
+```
