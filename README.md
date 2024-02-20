@@ -20,6 +20,7 @@
     - [Working with Objects](#working-with-objects)
     - [Problems with the Current Approach](#problems-with-the-current-approach)
     - [An Array of Objects](#an-array-of-objects)
+  - [Extra Curricular](#extra-curricular)
 
 ## Homework
 
@@ -249,7 +250,7 @@ Restart the server with `$ npm run start`.
 
 ## A Review of Design Patterns
 
-Let's review three common design patterns: 
+Let's review three common [design patterns](https://designpatterns.netlify.app/): 
 
 - [Static](https://designpatterns.netlify.app/static/reviews) - uses separate HTML files to create a functioning web site
 - [Fragments](https://designpatterns.netlify.app/fragments/) - a single page application (SPA) that uses link fragments to navigate
@@ -1319,3 +1320,32 @@ window.addEventListener("hashchange", setContentAccordingToHash);
 document.addEventListener("DOMContentLoaded", initializePage);
 ```
 
+## Extra Curricular
+
+Note: a resource usually lives at an "end point". An end point is a URL that the API uses to perform a specific action. For example, the end point for the NASA API is `https://api.nasa.gov/planetary/apod?api_key=fj9a8bBmnYgdbmBX8aYEhhdeSJfBVk3JYWlOjPSc`.
+
+In our case there is a json file avaible on Github at `https://raw.githubusercontent.com/front-end-foundations/FlexNav/master/app/js/data-array.json`.
+
+We can use the browser's `fetch` method to get the data from the URL:
+
+```js
+async function logContent() {
+  const response = await fetch("https://raw.githubusercontent.com/front-end-foundations/FlexNav/master/app/js/data-array.json");
+  const content = await response.json();
+  console.log(content);
+}
+```
+
+Typically we create a variable to store the data and a variable to store the end point:
+
+```js
+let data; // NEW
+const endPoint = "https://raw.githubusercontent.com/front-end-foundations/FlexNav/master/app/js/data-array.json"; // NEW
+
+async function logContent() {
+  const response = await fetch(endPoint);
+  const content = await response.json();
+  console.log(content);
+  data = content; // NEW
+}
+```
