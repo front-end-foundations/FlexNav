@@ -20,7 +20,7 @@
   - [SPA Design Issues](#spa-design-issues)
     - [Event Delegation](#event-delegation)
     - [Working with Objects](#working-with-objects)
-    - [String Manipluation](#string-manipluation)
+    - [String Manipulation](#string-manipulation)
     - [Problems with the Current Approach](#problems-with-the-current-approach)
     - [An Array of Objects](#an-array-of-objects)
 
@@ -889,7 +889,7 @@ Paste `window.location` in the browser console. We can use Location to get the h
 
 In the console try: `window.location.hash`. Note that it returns the hash followed by whatever follows, e.g. '#cuisines'.
 
-### String Manipluation
+### String Manipulation
 
 Our page is still navigable but let's expand our use of hashes. 
 
