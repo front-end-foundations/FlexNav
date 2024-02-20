@@ -362,7 +362,7 @@ So we can use media queries to control the layout at different screen sizes. Her
 
 ## JavaScript Navigation
 
-Add an active class to the tabs when they are clicked on.
+First we will use JavaScript to add an active class to the tabs when they are clicked on.
 
 Add a script tag to `index.html` above the closing body tag.
 
@@ -379,14 +379,14 @@ We need to use `querySelectorAll` because we are gathering more than one item:
 
 ```js
 var tabs = document.querySelectorAll("nav a");
+console.log(tabs);
 console.log(tabs[0]); // access the first item in the tabs NodeList
 ```
 
-Note that we use brackets to access the first item in the NodeList. We can also use the `length` property to see how many items are in the NodeList:
+Note that we use brackets to access items in the NodeList and that the count begines at 0. We can use the `length` property to see how many items are in the NodeList:
 
 ```js
 var tabs = document.querySelectorAll("nav a");
-console.log(tabs[0]); 
 console.log(tabs.length);
 ```
 
