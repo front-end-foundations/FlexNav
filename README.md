@@ -14,6 +14,8 @@
   - [A Review of Design Patterns](#a-review-of-design-patterns)
   - [Flexbox Navigation](#flexbox-navigation)
   - [JavaScript Navigation](#javascript-navigation)
+    - [JavaScript 'for' Loops](#javascript-for-loops)
+    - [Event Listeners and 'for' Loops](#event-listeners-and-for-loops)
     - [Content](#content)
   - [SPA Design Issues](#spa-design-issues)
     - [Event Delegation](#event-delegation)
@@ -393,6 +395,8 @@ console.log(tabs.length);
 
 We need to attach an eventListener to each of the tabs. `addEventListener()` requires you to pass in a specific, individual element to listen to. You cannot simply specify a list of elements: `tabs.addEventListener()`.
 
+### JavaScript 'for' Loops
+
 We will use a `for` loop to loop through the tabs.
 
 A for loop is a control flow statement for specifying iteration, which allows code to be executed repeatedly. The syntax is:
@@ -427,6 +431,7 @@ for (let i = 0; i < tabs.length; i++) {
 }
 ```
 
+### Event Listeners and 'for' Loops
 
 Attach an event listener to each tab:
 
@@ -477,7 +482,7 @@ for (let i = 0; i < tabs.length; i++) {
 }
 ```
 
-Lets remove the active class from all tabs before we add it so that only one is active at a time:
+Lets remove the active class from all tabs (using a 'for' loop) before we add it so that only one is active at a time:
 
 ```js
 var tabs = document.querySelectorAll("nav a");
@@ -495,7 +500,7 @@ for (let i = 0; i < tabs.length; i++) {
 }
 ```
 
-To make things easier to reason about we will separate the classList removal out into its own `makeInactive` function and then call that function (`makeInactive();`):
+To make things easier to reason about we will separate the classList removal out into its own `makeInactive` function and then call that function (`makeInactive();`) from the `makeActive` function:
 
 ```js
 const tabs = document.querySelectorAll("nav a");
