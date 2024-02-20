@@ -20,9 +20,9 @@
   - [SPA Design Issues](#spa-design-issues)
     - [Event Delegation](#event-delegation)
     - [Working with Objects](#working-with-objects)
+    - [String Manipluation](#string-manipluation)
     - [Problems with the Current Approach](#problems-with-the-current-approach)
     - [An Array of Objects](#an-array-of-objects)
-  - [Extra Curricular](#extra-curricular)
 
 ## Homework
 
@@ -319,7 +319,7 @@ Style the anchor tags:
 nav a {
   text-decoration: none;
   color: #000;
-  font-weight: 500;
+  font-weight: 700;
   padding: 6px 10px;
 }
 ```
@@ -397,7 +397,7 @@ We need to attach an eventListener to each of the tabs. `addEventListener()` req
 
 ### JavaScript 'for' Loops
 
-We will use a `for` loop to loop through the tabs.
+We will use a [documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) loop to loop through the tabs.
 
 A for loop is a control flow statement for specifying iteration, which allows code to be executed repeatedly. The syntax is:
 
@@ -421,6 +421,23 @@ for (let i = 0; i < 5; i++) {
 }
 ```
 
+Note: `i++` is shorthand for `i = i + 1`.
+
+```js
+let num = 1;
+
+for (let i = 0; i < 9; i++) {
+  console.log('i: ', i)
+  console.log('before adding: ', num)
+  num = num + i;
+  console.log('after adding: ', num)
+}
+
+console.log('final num: ', num);
+```
+
+Note: the loop exits when `i` is no longer less than 9. The final number is only displayed after the loop exits.
+
 Use `tabs.length` (4) in the condition and use `tabs[i]` to access each tab:
 
 ```js
@@ -433,7 +450,7 @@ for (let i = 0; i < tabs.length; i++) {
 
 ### Event Listeners and 'for' Loops
 
-Attach an event listener to each tab:
+We cannot attach an event listener to a NodeList. Instead we must Attach an event listener to each tab using a `for` loop:
 
 ```js
 var tabs = document.querySelectorAll("nav a");
@@ -447,6 +464,8 @@ for (let i = 0; i < tabs.length; i++) {
   tabs[i].addEventListener("click", makeActive);
 }
 ```
+
+Note: we've added a call back function - `makeActive` - with `event.preventDefault()` to prevent the default behavior of the link. 
 
 <!-- Since NodeLists have a forEach method we can also do this:
 
@@ -465,9 +484,9 @@ tabs.forEach((tab) => tab.addEventListener("click", makeActive));
 
 -->
 
-Since `event.target` is read-only we cannot use it to add a class to the link we click on with `event.target.class = "active";`.
+`event.target` is [read-only](https://developer.mozilla.org/en-US/docs/Web/API/Event/target). We cannot use it to set a class on the link we click on. I.e., This will not work `event.target.class = "active";`.
 
-Let's use `classList` again to add a class to the link we click on:
+Let's use [classList](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList) again to add a class to the link we click on:
 
 ```js
 var tabs = document.querySelectorAll("nav a");
@@ -482,15 +501,15 @@ for (let i = 0; i < tabs.length; i++) {
 }
 ```
 
-Lets remove the active class from all tabs (using a 'for' loop) before we add it so that only one is active at a time:
+Remove the active class from all tabs (using a `for` loop) before we add it so that only one is active at a time:
 
 ```js
 var tabs = document.querySelectorAll("nav a");
 
 function makeActive(event) {
   event.preventDefault();
-  for (let i = 0; i < tabs.length; i++) {
-    tabs[i].classList.remove("active");
+  for (let i = 0; i < tabs.length; i++) { // NEW
+    tabs[i].classList.remove("active"); 
   }
   event.target.classList.add("active");
 }
@@ -507,7 +526,7 @@ const tabs = document.querySelectorAll("nav a");
 
 function makeActive(event) {
   event.preventDefault();
-  makeInactive();
+  makeInactive(); // NEW
   event.target.classList.add("active");
 }
 
@@ -527,11 +546,12 @@ for (let i = 0; i < tabs.length; i++) {
 Create a new script tag above the existing one in `index.html`:
 
 ```html
-<script src="js/data-variables.js"></script>
+<!-- NEW -->
+<script src="js/data-variables.js"></script> 
 <script src="js/scripts.js"></script> 
 ```
 
-Examine the `data-variables.js` file:
+Examine the `js/data-variables.js` file:
 
 ```js
 const cuisines =
@@ -549,13 +569,13 @@ const delivery =
 
 Note the use of HTML tags in the strings. 
 
-Create an empty `main` tag with a class of `content` below the navbar in the html:
+Create an empty `article` tag with a class of `content` below the navbar in the html:
 
 ```html
-<div class="content"></div>
+<article class="content"></article>
 ```
 
-and a variable that holds a reference to it and initialize our page with some text using `innerHTML`:
+and a variable that holds a reference to it and initialize our page with one of our variables using `innerHTML`:
 
 ```js
 const contentPara = document.querySelector('.content');
@@ -570,16 +590,17 @@ Add some minimal styling to the content:
 }
 ```
 
-Note that we can read the value of the link's href by using `event.target.href`:
+We know that we can read the value of the clicked link's href by using `event.target.href`:
 
 ```js
 function makeActive() {
+  ...
   console.log(event.target.href);
   ...
 }
 ```
 
-So let's make the HTML of the `.content` div depend on the clicked link's href. We will use and new string method `includes`:
+So let's make the HTML of the `.content` div depend on the clicked link's href. We will use and new string method [includes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes):
 
 ```js
 function makeActive(event) {
@@ -596,7 +617,7 @@ function makeActive(event) {
 
 `string.includes` is a function that returns `true` if the string contains the substring and `false` if it does not.
 
-Expand the conditions:
+Our script only works for one tab. Expand the conditions:
 
 ```js
 function makeActive(event) {
@@ -612,21 +633,23 @@ function makeActive(event) {
     contentPara.innerHTML = reviews;
   } else if (event.target.href.includes("delivery")) {
     contentPara.innerHTML = delivery;
+  } else {
+    contentPara.innerHTML = "Error: Content not found";
   }
 }
 ```
 
 Note: we have a bug in our code. Everything works except `if (event.target.href.includes('cuisines'))`.
 
-Change the link in index.html to:
+Change the first link in `index.html` to:
 
 ```html
 <li><a href="foocuisinesbar" class="active">cuisines</a></li>
 ```
 
-Note: we did not use `event.target.href === "cuisines"` because the href is a full URL and not just the work chefs, cuisines etc. Try `console.log(event.target.href)` to see what I mean.
+Again note: we do not use `event.target.href === "cuisines"` because the href is a full URL and not just the work chefs, cuisines etc. Recall what  `console.log(event.target.href)` returns.
 
-Demo: DOM vs HTML view source.
+Demo: DOM vs HTML view source. The Elements panel in the inspector shows the current state of the DOM, not the original HTML.
 
 ## SPA Design Issues
 
@@ -640,11 +663,11 @@ We cannot:
 - we have limited search engine optimization (SEO)
 - our site will not work without JavaScript
 
-The problems with what we've built might be termed _maintaining state_ and _routing_. If you refresh the browser while you are on the Reviews tab the page reinitializes to show the Cuisines tab and content.
+The problems with what we've built might be termed _maintaining state_ and _routing_. If you refresh the browser while you are on the Reviews tab the page reinitializes to show the Cuisines tab and content. We will fix this shortly.
 
 ### Event Delegation
 
-Instead of listening for clicks on each individual tab:
+Instead of listening for clicks on each individual tab, e.g.:
 
 ```js
 for (let i = 0; i < tabs.length; i++) {
@@ -664,7 +687,6 @@ document.addEventListener("click", makeActive);
 ```
 
 Event delegation allows us to listen for events on a parent element, determine which child element the event occurred on and change behavior based on the click event's target (the node that was clicked on). It is not strictly necessary in this simple page but it is a good habit and a feature of many JavaScript libraries.
-
 
 Everything works as previously however clicking on any HTML element now runs our `makeActive` function. 
 
@@ -774,7 +796,11 @@ Note: the use of the term "object" is a bit problematic in JavaScript because, t
 
 We will switch to using objects to store our data using the file `data-object.js` which is already in the `js` directory.
 
-Add `<script src="js/data-object.js"></script>` to `index.html` before the existing script tag:
+Remove the existing `data-variables.js` script tag and add 
+
+`<script src="js/data-object.js"></script>` 
+
+to `index.html` - before the existing script tag:
 
 ```html
     <script src="js/data-object.js"></script>
@@ -800,9 +826,11 @@ const data = {
 };
 ```
 
-Note the error in the console: `Uncaught ReferenceError: cuisines is not defined`. Our existing code can no longer find the variable cuisines.
+Note the error in the console: `Uncaught ReferenceError: cuisines is not defined`. Our existing code:
 
 `contentPara.innerHTML = cuisines;`
+
+can no longer access the variable cuisines and we get a [ReferenceError](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError). We need to access the value of the key `cuisines` in the object `data`.
 
 Update the script to use the "dot" accessor method for objects - e.g. `data.cuisines`:
 
@@ -832,9 +860,15 @@ function makeActive(event) {
 }
 ```
 
+Don't forget the initial page load:
+
+```js
+contentPara.innerHTML = data.cuisines;
+```
+
 Our page is still pretty fragile. Hitting refresh still defaults to the cuisines page and the back button doesn't work. Let's fix it by getting the page contents based on the address in the browser's address bar.
 
-We are using `event.preventDefault()` and so the browser's location bar never changes. 
+We are currently using `event.preventDefault()` and so the browser's location bar never changes. 
 
 Change the href values in the nav to use hashes:
 
@@ -854,6 +888,10 @@ Remove `event.preventDefault();` from the script. We no longer need it since has
 Paste `window.location` in the browser console. We can use Location to get the hash.
 
 In the console try: `window.location.hash`. Note that it returns the hash followed by whatever follows, e.g. '#cuisines'.
+
+### String Manipluation
+
+Our page is still navigable but let's expand our use of hashes. 
 
 We can get the string without the hash from the URL using [substring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substring):
 
@@ -897,10 +935,12 @@ myObject[text]
 myObject.text // doesn't work
 ```
 
+As you might imagine, strings are a fundamental data type for working with data on the web. We will use them frequently and your growing knowledge of [string methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) will be important.
+
 ### Problems with the Current Approach
 
 1. in certain circumstances we have to click on the tab twice to get the appropriate content 
-2. the active / inactive class switching works but not at first when we refresh the page
+2. the active / inactive class switching works but not at first or when we refresh the page
 
 We can see the first issue by logging the variable currentHash to the console:
 
@@ -917,7 +957,7 @@ function makeActive(event) {
 
 This could be a tricky bug to resolve.  
 
-We can set the hash to a default value when the page loads. Try the following in the browser's location bar:
+We can set the hash to a default value when the page loads. Try the following in the browser's console:
 
 ```js
 window.location.hash = "foobar"
@@ -1012,11 +1052,29 @@ Refreshing the page now maintains the active tab and the content.
 
 Note the use of [attribute selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors) and concatenation. 
 
-We can use an attribute selector to select the anchor tag with the href cuisines in our `initializePage` function:
+Attribute selectors are very handy in CSS and JavaScript. They allow us to select elements based on the presence of an attribute or the value of an attribute. Here is an example of an attribute selector in CSS:
+
+```css 
+[class="content"] {
+  color: red;
+}
+```
+
+Note the use of string concatenation in the JavaScript:
+
+```js
+.querySelector('[href="' + window.location.hash + '"] ')
+```
+
+We'll use a more modern form of string concatenation to improve upon this line of code.
+
+We could also use an attribute selector to select the anchor tag with the `href="cuisines"` in our `initializePage` function:
 
 ```js
 document.querySelector('[href="#cuisines"]').classList.add("active");
 ```
+
+Note the use of single and double quotes. We use single quotes to wrap the entire string and double quotes to wrap the value of the attribute.
 
 Next we'll replace our concatination with template strings (aka string literals).
 
@@ -1030,9 +1088,11 @@ const age = 2;
 
 const oldSchool =
   "My name is " + name + " and I am " + age * 7 + " years old.";
+
 oldschool
 
 const newSchool = `My name is ${name} and I am ${age * 7} years old.`;
+
 newschool
 ```
 
@@ -1202,7 +1262,7 @@ Compare the following two code snippets:
 ```js
 // runs on page load and whenever the hash changes
 function setContentAccordingToHash() {
-  var currentHash = window.location.hash.substring(1);
+  const currentHash = window.location.hash.substring(1);
   contentPara.innerHTML = data[currentHash];
   makeActive(currentHash);
 }
@@ -1252,8 +1312,8 @@ function setContentAccordingToHash() {
 We can use a template string (string literal) to create HTML that uses both the section and story elements:
 
 ```js
-if (item.section === currentHash) {
-  contentPara.innerHTML = `<h2>${item.section}</h2> <p>${item.story}</p>`;
+if (data[i].section === currentHash) {
+  contentPara.innerHTML = `<h2>${data[i].section}</h2> <p>${data[i].story}</p>`;
   makeActive(currentHash);
 }
 ```
@@ -1266,7 +1326,10 @@ function setContentAccordingToHash() {
   const currentHash = window.location.hash.substring(1);
   for (var i = 0; i < data.length; i++) {
     if (data[i].section === currentHash) {
-      contentPara.innerHTML = `<h2>${data[i].section}</h2> <p>${data[i].story}</p>`;
+      contentPara.innerHTML = `
+      <h2>${data[i].section}</h2> 
+      <p>${data[i].story}</p>
+      `;
       makeActive(currentHash);
     }
   }
@@ -1280,7 +1343,7 @@ And finally, use an [event](https://developer.mozilla.org/en-US/docs/Web/API/Doc
 document.addEventListener("DOMContentLoaded", initializePage);
 ```
 
-Here is the final result:
+Here is the final script:
 
 ```js 
 // declare variables
@@ -1325,11 +1388,11 @@ window.addEventListener("hashchange", setContentAccordingToHash);
 document.addEventListener("DOMContentLoaded", initializePage);
 ```
 
-## Extra Curricular
+<!-- ## Extra Curricular Activity
 
 Note: a resource usually lives at an "end point". An end point is a URL that the API uses to perform a specific action. For example, the end point for the NASA API is `https://api.nasa.gov/planetary/apod?api_key=fj9a8bBmnYgdbmBX8aYEhhdeSJfBVk3JYWlOjPSc`.
 
-In our case there is a json file avaible on Github at `https://raw.githubusercontent.com/front-end-foundations/FlexNav/master/app/js/data-array.json`.
+In our case there is a json file available on Github at `https://raw.githubusercontent.com/front-end-foundations/FlexNav/master/app/js/data-array.json`.
 
 We can use the browser's `fetch` method to get the data from the URL:
 
@@ -1353,4 +1416,4 @@ async function logContent() {
   console.log(content);
   data = content; // NEW
 }
-```
+``` -->
