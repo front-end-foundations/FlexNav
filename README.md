@@ -120,13 +120,13 @@ The UI is spare but the techniques and concepts employed are complex.
 You will be introduced to:
 
 - node package manager
-- css flexbox
-- css attribute selectors
-- js data structures: arrays and objects
-- js flow control: looping with `for...of` and `if` statements
-- js DOM manipulation: `innerHTML` and `classList`
-- js string manupulation: `includes`, `substring` and template strings
-- js event listeners: `click` and `hashchange`
+- CSS flexbox
+- CSS attribute selectors
+- JavaScript data structures: arrays and objects
+- JavaScript flow control: looping with `for...of` and `if` statements
+- JavaScript DOM manipulation with `innerHTML`, `includes` and `classList`
+- JavaScript string manipulation with `substring` and template strings
+- JavaScript event listeners: `click` and `hashchange`
 - working with routing, urls and hashes
 - web site design patterns
 
@@ -345,6 +345,19 @@ nav .active {
   border-radius: 4px;
 }
 ```
+
+Although not needed here, we will introduce an [attribute selector](https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors) to make the selection:
+
+```css
+nav a:hover,
+nav a[class="active"] {
+  color: #fff;
+  background: rgb(240, 31, 31);
+  border-radius: 4px;
+}
+```
+
+We will use attribute selectors later in this exercise.
 
 ---
 
