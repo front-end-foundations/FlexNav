@@ -24,7 +24,7 @@
     - [Problems with the Current Approach](#problems-with-the-current-approach)
     - [An Array of Objects](#an-array-of-objects)
 
-## Homework
+<!-- ## Homework
 
 ### Part One
 
@@ -32,7 +32,7 @@ Continue with the Front End Masters - the entire [CSS section](https://frontendm
 
 ### Part Two
 
-Begin the [JavaScript section](https://frontendmasters.com/courses/web-development-v3/javascript-overview/).
+Begin the [JavaScript section](https://frontendmasters.com/courses/web-development-v3/javascript-overview/). -->
 
 ## The Terminal
 
@@ -80,19 +80,22 @@ Use `cd` or the copy and paste method to cd into today's folder.
 
 If you want to learn more about the terminal try reading [this article](https://www.git-tower.com/blog/more-productive-mastering-terminal/?vgo_ee=e7b8PdtP0aWH7ZIgym%2BTUayPUFd7JHyq9acdSgULWaM%3D).
 
-## Initialize GIT and Create a Branch
+## Configuring Git
 
-[Configure](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup) your installation of git:
+[Configuring](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup) your installation of git:
 
 ```sh
 $ git config --global user.name "John Doe"
 $ git config --global user.email johndoe@example.com
 $ git config --global init.defaultBranch main
 $ git config --list
-# $ :q
 ```
 
-[Create a personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+See also: [Creating a personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+
+## Initialize GIT and Create a Branch
+
+Download the `Flexnav` project as a zip file from Github.
 
 Initialize your repository:
 
@@ -137,7 +140,7 @@ You should have you a better understanding of:
 
 - how browsers function internally
 - routing or how the browser determines what content to display based on the URL
-- managing the state (data) of the page based on the browser's location
+- managing page views based on the browser's location
 
 We will examine various design patterns shortly.
 
@@ -236,6 +239,8 @@ Add to the scripts section of package.json. This will allow us to start the serv
 
 This script is a command line. It was written by consulting the command line [documentation](https://browsersync.io/docs/command-line).
 
+In the terminal: `$ npm run start`
+
 Make a small change to the HTML and note the hot reloading.
 
 Use `ctrl-c` to shut down the server.
@@ -264,11 +269,13 @@ All three approaches are valid and common and each has advantages and disadvanta
 
 The difference between the static and SPA approach is often subsumed under the rubriks "web site" vs "web app."
 
-The primary disadvantage of the multi-page static version is that any JavaScript and CSS running on the page is reinitialized and/or reloaded when a new page is loaded. This inability to maintain the state of data across views makes it unsuitable for web applications. The advantages include better search engine optimization (SEO), the ability to share links with others and to use a back button among others.
+The primary disadvantage of the multi-page static version is that any JavaScript and CSS running on the page is reinitialized and/or reloaded when a new page is loaded. The inability to maintain the state of data across views makes it unsuitable for web applications. The advantages include better search engine optimization (SEO), the ability to share links and to use a back button among others.
 
 The primary advantage of the SPA is that it does not reinitialize JavaScript (or CSS for that matter) because there is only one HTML page - just with different views. It can work more like a desktop application (think Gmail or Google Docs for example).
 
 The fragments page is a compromise between the two. It maintains state across views and does not reinitialize JavaScript. It is a good choice for a web site that needs to maintain state across views but does not need to be a full web application.
+
+Examine the URL's in Gmail and note the use of hashes ('#').
 
 For pedagogical purposes I have modeled our design after the SPA.
 
@@ -277,10 +284,6 @@ For pedagogical purposes I have modeled our design after the SPA.
 ---
 
 ## Flexbox Navigation
-
-Add a link to the CSS in the head of the HTML:
-
-` <link rel="stylesheet" href="css/styles.css" />`
 
 Add some basic formatting in `app/styles.css`:
 
@@ -326,7 +329,7 @@ nav a {
 
 Note the units for specifying font weight - a number between 100 and 900. This allows us to access the full range of weights available in a font instead of the single weight we get with `font-weight: bold`.
 
-Add an `active` class to the first anchor tag in the navbar:
+Note the `active` class on the first anchor tag in the navbar:
 
 ```html
 <li><a class="active" href="index.html">cuisines</a></li>
@@ -354,7 +357,7 @@ We have a meta tag:
 So we can use media queries to control the layout at different screen sizes. Here we will target the wide screen by using `min-width` instead of `max-width`:
 
 ```css
-@media (min-width: 460px) {
+@media (width > 460px) {
   nav ul {
     padding-left: 1rem;
     justify-content: flex-start;
@@ -426,17 +429,16 @@ Note: `i++` is shorthand for `i = i + 1`.
 ```js
 let num = 1;
 
-for (let i = 0; i < 9; i++) {
+for (let i = 0; i < 5; i++) {
   console.log("i: ", i);
-  console.log("before adding: ", num);
   num = num + i;
-  console.log("after adding: ", num);
+  console.log("num: ", num);
 }
 
 console.log("final num: ", num);
 ```
 
-Note: the loop exits when `i` is no longer less than 9. The final number is only displayed after the loop exits.
+Note: the loop exits when `i` is no longer less than 5. The final number is only displayed after the loop exits.
 
 Use `tabs.length` (4) in the condition and use `tabs[i]` to access each tab:
 
@@ -578,6 +580,8 @@ Create an empty `article` tag with a class of `content` below the navbar in the 
 
 and a variable that holds a reference to it and initialize our page with one of our variables using `innerHTML`:
 
+<!-- heee -->
+
 ```js
 const contentPara = document.querySelector(".content");
 contentPara.innerHTML = cuisines;
@@ -648,7 +652,7 @@ Change the first link in `index.html` to:
 <li><a href="foocuisinesbar" class="active">cuisines</a></li>
 ```
 
-Again note: we do not use `event.target.href === "cuisines"` because the href is a full URL and not just the work chefs, cuisines etc. Recall what `console.log(event.target.href)` returns.
+Again note: we do not use `event.target.href === "cuisines"` because the href is a full URL and not just the word chefs, cuisines etc. Recall what `console.log(event.target.href)` returns.
 
 Demo: DOM vs HTML view source. The Elements panel in the inspector shows the current state of the DOM, not the original HTML.
 
@@ -861,12 +865,6 @@ function makeActive(event) {
 }
 ```
 
-Don't forget the initial page load:
-
-```js
-contentPara.innerHTML = data.cuisines;
-```
-
 Our page is still pretty fragile. Hitting refresh still defaults to the cuisines page and the back button doesn't work. Let's fix it by getting the page contents based on the address in the browser's address bar.
 
 We are currently using `event.preventDefault()` and so the browser's location bar never changes.
@@ -1008,7 +1006,9 @@ function makeActive(event) {
 }
 
 function makeInactive() {
-  tabs.forEach((tab) => tab.classList.remove("active"));
+  for (let i = 0; i < tabs.length; i++) {
+    tabs[i].classList.remove("active");
+  }
 }
 
 function setContentAccordingToHash() {
@@ -1393,6 +1393,18 @@ function initializePage() {
 
 window.addEventListener("hashchange", setContentAccordingToHash);
 document.addEventListener("DOMContentLoaded", initializePage);
+```
+
+## End
+
+## Notes
+
+Make use of the collection's `forEach` method in `makeInactive`
+
+```js
+function makeInactive() {
+  tabs.forEach((tab) => tab.classList.remove("active"));
+}
 ```
 
 <!-- ## Extra Curricular Activity
