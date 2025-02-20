@@ -1,11 +1,9 @@
 # FlexNav
 
 - [FlexNav](#flexnav)
-  - [Homework](#homework)
-    - [Part One](#part-one)
-    - [Part Two](#part-two)
   - [The Terminal](#the-terminal)
     - [A Note For Windows Users](#a-note-for-windows-users)
+  - [Configuring Git](#configuring-git)
   - [Initialize GIT and Create a Branch](#initialize-git-and-create-a-branch)
   - [The Project](#the-project)
   - [Node Package Manager (NPM)](#node-package-manager-npm)
@@ -23,6 +21,8 @@
     - [String Manipluation](#string-manipluation)
     - [Problems with the Current Approach](#problems-with-the-current-approach)
     - [An Array of Objects](#an-array-of-objects)
+  - [End](#end)
+  - [Notes](#notes)
 
 <!-- ## Homework
 
@@ -932,9 +932,9 @@ function makeActive(event) {
 }
 ```
 
-Note the use of `data[...]` instead of `data.type`. We use square brackets because `currentHash` is a string.
+Note the use of `data[currentHash]` instead of `data.currentHash`. We use square brackets because `currentHash` is a string.
 
-For example:
+<!-- For example:
 
 ```js
 var text = "cuisines";
@@ -945,7 +945,7 @@ var myObject = {
 
 myObject[text];
 myObject.text; // doesn't work
-```
+``` -->
 
 As you might imagine, strings are a fundamental data type for working with data on the web. We will use them frequently and your growing knowledge of [string methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) will be important.
 
